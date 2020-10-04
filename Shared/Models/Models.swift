@@ -5,13 +5,19 @@ public struct ImageUploadContent: Codable {
         let downloadUrl: String
     }
 
-    let content: Content
+    public struct CommitResponse: Codable {
+        let content: Content
+    }
+
+    let commitResponse: CommitResponse
+    let filename: String
 }
 
 public struct PostContent: Codable {
     let repo: String
     let accessToken: String
     let title: String?
+    let postfolder: String
     let content: [ContentPart]
 }
 

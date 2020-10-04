@@ -17,7 +17,8 @@ let entryComposeReducer = Reducer<EntryComposeState, EntryComposeAction, EntryCo
             state.title = title
             return .none
         case .addParagraph:
-            let paragraphState = EntryComposeComponentState(componentType: .paragraph(""))
+            let paragraphState = EntryComposeComponentState(componentType: .paragraph(""),
+                                                            postfolder: state.postfolder)
             state.componentStates.append(paragraphState)
             return .none
         case .selectImage:
@@ -25,7 +26,8 @@ let entryComposeReducer = Reducer<EntryComposeState, EntryComposeAction, EntryCo
             return .none
         case .imageSelectionResponse(let data):
             if let data = data {
-                let uploadingState = EntryComposeComponentState(componentType: .uploadingImage(data, startUpload: true))
+                let uploadingState = EntryComposeComponentState(componentType: .uploadingImage(data, startUpload: true),
+                                                                postfolder: state.postfolder)
                 state.componentStates.append(uploadingState)
             }
             
@@ -73,6 +75,7 @@ let entryComposeReducer = Reducer<EntryComposeState, EntryComposeAction, EntryCo
                 repo: repo,
                 accessToken: accessToken,
                 title: state.title,
+                postfolder: state.postfolder,
                 content: content)
 
             let upload: Future<Empty, Error> = enviornment
@@ -93,6 +96,9 @@ let entryComposeReducer = Reducer<EntryComposeState, EntryComposeAction, EntryCo
 
             if success {
                 state.uploadButtonTitle = "Upload"
+                state.componentStates = []
+                state.title = ""
+                state.postfolder = EntryComposeState.posfolder()
             } else {
                 state.uploadButtonTitle = "Upload failed, try again"
             }

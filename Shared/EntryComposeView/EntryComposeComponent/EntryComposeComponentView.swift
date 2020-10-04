@@ -28,7 +28,7 @@ struct EntryComposeComponentView: View {
                     .onAppear {
                         viewStore.send(.uploadImageIfNeeded)
                     }
-            case .imageURL(let url):
+            case .imageURL(let url, _):
                 KFImage(url)
                     .resizable()
                     .scaledToFit()

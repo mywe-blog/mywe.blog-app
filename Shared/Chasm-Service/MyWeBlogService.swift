@@ -59,7 +59,7 @@ public final class MyWeBlogService {
 
     public enum Endpoint {
         case createEntry(_ entry: PostContent)
-        case uploadImage(repo: String, accessToken: String, imageData: Data)
+        case uploadImage(repo: String, accessToken: String, imageData: Data, postfolder: String)
 
         var path: String {
             switch self {
@@ -93,7 +93,7 @@ public final class MyWeBlogService {
                 encoder.dateEncodingStrategy = .iso8601
                 encoder.keyEncodingStrategy = .convertToSnakeCase
                 return try? encoder.encode(entry)
-            case .uploadImage(let repo, let accessToken, let imageData):
+            case .uploadImage:
                 return nil
             }
         }
@@ -102,8 +102,8 @@ public final class MyWeBlogService {
             switch self {
             case .createEntry:
                 return "application/json"
-            case .uploadImage(let repo, let accessToken, let imageData):
-            return ""
+            case .uploadImage:
+                return ""
             }
         }
     }
@@ -121,11 +121,12 @@ public final class MyWeBlogService {
         let queryURL = baseURL.appendingPathComponent(endpoint.path)
 
         switch endpoint {
-        case .uploadImage(let repo, let accessToken, let imageData):
+        case .uploadImage(let repo, let accessToken, let imageData, let postfolder):
             return Future<T, Error> { promise in
                 let filename = UUID().uuidString + ".jpg"
                 AF.upload(multipartFormData: { multipartFormData in
                     multipartFormData.append(repo.data(using: .utf8)!, withName: "repo")
+                    multipartFormData.append(postfolder.data(using: .utf8)!, withName: "postfolder")
                     multipartFormData.append(accessToken.data(using: .utf8)!, withName: "access_token")
                     multipartFormData.append(imageData, withName: "file", fileName: filename, mimeType: "image/jpeg")
                 },

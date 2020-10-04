@@ -14,6 +14,7 @@
 		C5375C372529989A00EA2260 /* SettingsComponentAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5375C362529989A00EA2260 /* SettingsComponentAction.swift */; };
 		C5375C3B252998BA00EA2260 /* SettingsComponentReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5375C3A252998BA00EA2260 /* SettingsComponentReducer.swift */; };
 		C5375C432529994800EA2260 /* MultilineTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5375C422529994800EA2260 /* MultilineTextEditor.swift */; };
+		C5375C472529C23600EA2260 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5375C462529C23600EA2260 /* Date+Extension.swift */; };
 		C5697AB625204DB300480F02 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = C5697AB525204DB300480F02 /* ComposableArchitecture */; };
 		C5697ABB25204E2400480F02 /* EntrtyComposeState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5697ABA25204E2400480F02 /* EntrtyComposeState.swift */; };
 		C5697AC22520504900480F02 /* EntryComposeComponentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5697AC12520504900480F02 /* EntryComposeComponentState.swift */; };
@@ -47,6 +48,7 @@
 		C5375C362529989A00EA2260 /* SettingsComponentAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsComponentAction.swift; sourceTree = "<group>"; };
 		C5375C3A252998BA00EA2260 /* SettingsComponentReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsComponentReducer.swift; sourceTree = "<group>"; };
 		C5375C422529994800EA2260 /* MultilineTextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultilineTextEditor.swift; sourceTree = "<group>"; };
+		C5375C462529C23600EA2260 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		C5697ABA25204E2400480F02 /* EntrtyComposeState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntrtyComposeState.swift; sourceTree = "<group>"; };
 		C5697AC12520504900480F02 /* EntryComposeComponentState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryComposeComponentState.swift; sourceTree = "<group>"; };
 		C5697AC72520518500480F02 /* EntryComposeAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryComposeAction.swift; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 				C5CBBDC225171A7A0070B8D1 /* Assets.xcassets */,
 				C580C5E1252846570087C3E6 /* SecretsStore.swift */,
 				C5375C422529994800EA2260 /* MultilineTextEditor.swift */,
+				C5375C462529C23600EA2260 /* Date+Extension.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -321,6 +324,7 @@
 				C5375C312529987E00EA2260 /* SettingsComponentEnviornment.swift in Sources */,
 				C5697AC22520504900480F02 /* EntryComposeComponentState.swift in Sources */,
 				C5C23F7325285940002DD836 /* EntryComposeComponentEnviornment.swift in Sources */,
+				C5375C472529C23600EA2260 /* Date+Extension.swift in Sources */,
 				C5375C372529989A00EA2260 /* SettingsComponentAction.swift in Sources */,
 				C5697AC82520518500480F02 /* EntryComposeAction.swift in Sources */,
 				C580C5E2252846570087C3E6 /* SecretsStore.swift in Sources */,

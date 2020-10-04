@@ -9,12 +9,12 @@ let entryComposeComponentReducer = Reducer<EntryComposeComponentState, EntryComp
     case .changeText(let text):
         state.componentType = .paragraph(text)
         return .none
-    case .changeImage(let url):
-        guard let url = url else {
+    case .changeImage(let url, let filename):
+        guard let url = url, let filename = filename else {
             return .none
         }
 
-        state.componentType = .imageURL(url)
+        state.componentType = .imageURL(url, filename)
 
         return .none
     case .uploadImageIfNeeded:
@@ -31,16 +31,17 @@ let entryComposeComponentReducer = Reducer<EntryComposeComponentState, EntryComp
                 .service
                 .perform(endpoint: .uploadImage(repo: repo,
                                                  accessToken: accessToken,
-                                                 imageData: data))
+                                                 imageData: data,
+                                                 postfolder: state.postfolder))
             return upload
                 .catchToEffect()
                 .map { result in
                     print("Result \(result)")
                     switch result {
-                    case .success(let uploadCntent):
-                        return .changeImage(URL(string: uploadCntent.content.downloadUrl))
+                    case .success(let uploadContent):
+                        return .changeImage(URL(string: uploadContent.commitResponse.content.downloadUrl), filename: uploadContent.filename)
                     case .failure:
-                        return .changeImage(nil)
+                        return .changeImage(nil, filename: nil)
                     }
                 }
         default:
