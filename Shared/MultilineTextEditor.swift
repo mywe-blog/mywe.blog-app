@@ -9,7 +9,13 @@ struct MultilineTextEditor: View {
         ZStack {
             TextEditor(text: $text)
             if text.isEmpty {
-                Text(placeholder).opacity(0.2).padding(.all, 8)
+                HStack {
+                    Text(placeholder)
+                        .opacity(0.2)
+                        .padding(.all, 8)
+                    Spacer()
+                }
+                .allowsHitTesting(false)
             } else {
                 Text(text).opacity(0).padding(.all, 8)
             }

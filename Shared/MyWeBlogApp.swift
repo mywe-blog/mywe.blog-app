@@ -13,9 +13,11 @@ struct MyWeBlogApp: App {
         let queue = DispatchQueue.main.eraseToAnyScheduler()
 
         let secretsStore = SecretsStore()
+        let service = MyWeBlogService(baseURL: URL(string: "https://myweblog-api.herokuapp.com")!,
+                                      client: URLSession.shared)
+
         let enviornment = EntryComposeEnviornment(mainQueue: queue,
-                                                  service: MyWeBlogService(baseURL: URL(string: "http://127.0.0.1:3000")!,
-                                                                        client: URLSession.shared),
+                                                  service: service,
                                                   secretsStore: secretsStore)
 
         let settingsState = SettingsComponentState(
