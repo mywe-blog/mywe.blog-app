@@ -13,7 +13,7 @@ struct EntryComposeComponentView: View {
                     placeholder: "Paragraph",
                     text: viewStore.binding(
                         get: { $0.text },
-                        send: EntryComposeComponentAction.changeText
+                        send: EntryComposeComponentAction.changeParagraph
                     )
                 )
                 .contextMenu {
@@ -39,8 +39,22 @@ struct EntryComposeComponentView: View {
                             Text("Delete")
                         }
                     }
-            default:
-                Text("Empty")
+            case .headline:
+                MultilineTextEditor(
+                    placeholder: "Headline",
+                    font: Font.headline,
+                    text: viewStore.binding(
+                        get: { $0.text },
+                        send: EntryComposeComponentAction.changeHeadline
+                    )
+                )
+                .contextMenu {
+                    Button {
+                        viewStore.send(.delete)
+                    } label: {
+                        Text("Delete")
+                    }
+                }
             }
         }
     }

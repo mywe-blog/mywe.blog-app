@@ -32,7 +32,11 @@ struct EntryComposeView: View {
                     }
                     Section {
                         Button("Add paragraph") {
-                            viewStore.send(.addParagraph)                        }
+                            viewStore.send(.addParagraph)
+                        }
+                        Button("Add Headline") {
+                            viewStore.send(.addHeadline)
+                        }
                         Button("Add Image") {
                             viewStore.send(.showsImagePicker(true))
                         }.sheet(

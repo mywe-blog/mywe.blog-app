@@ -21,6 +21,11 @@ let entryComposeReducer = Reducer<EntryComposeState, EntryComposeAction, EntryCo
                                                             postfolder: state.postfolder)
             state.componentStates.append(paragraphState)
             return .none
+        case .addHeadline:
+            let paragraphState = EntryComposeComponentState(componentType: .headline(""),
+                                                            postfolder: state.postfolder)
+            state.componentStates.append(paragraphState)
+            return .none
         case .selectImage:
             state.showsImagePicker = true
             return .none

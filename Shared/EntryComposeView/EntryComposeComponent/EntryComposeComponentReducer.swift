@@ -6,8 +6,11 @@ let entryComposeComponentReducer = Reducer<EntryComposeComponentState, EntryComp
     switch action {
     case .delete:
         return .none
-    case .changeText(let text):
+    case .changeParagraph(let text):
         state.componentType = .paragraph(text)
+        return .none
+    case .changeHeadline(let text):
+        state.componentType = .headline(text)
         return .none
     case .changeImage(let url, let filename):
         guard let url = url, let filename = filename else {
