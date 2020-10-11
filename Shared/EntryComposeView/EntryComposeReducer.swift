@@ -63,7 +63,7 @@ let entryComposeReducer = Reducer<EntryComposeState, EntryComposeAction, EntryCo
         case .move(let items, let position):
             state.componentStates.move(fromOffsets: items, toOffset: position)
             return .none
-        case .upload:
+        case .uploadPost:
             guard let accessToken = enviornment.secretsStore.accessToken,
                   let repo = enviornment.secretsStore.repoName else {
                 return .none
@@ -134,7 +134,7 @@ let entryComposeReducer = Reducer<EntryComposeState, EntryComposeAction, EntryCo
                         return .uploadSuccess(false)
                     }
                 }
-        case .uploadImagesIfNeeded:
+        case .upload:
             state.uploadButtonTitle = "Uploading"
             state.uploadButtonEnabled = false
 
@@ -144,13 +144,13 @@ let entryComposeReducer = Reducer<EntryComposeState, EntryComposeAction, EntryCo
                 }
             }
 
-            return Effect(value: EntryComposeAction.upload)
+            return Effect(value: EntryComposeAction.uploadPost)
         case .uploadedImage(let position, let uploadContent, let data):
             var imageState = state.componentStates[position]
             imageState.componentType = .imageURL(data,
                                                  uploadContent.filename)
             state.componentStates[position] = imageState
-            return Effect(value: .uploadImagesIfNeeded)
+            return Effect(value: .upload)
         }
     },
     settingsComponentReducer.pullback(state: \EntryComposeState.settingsState,
