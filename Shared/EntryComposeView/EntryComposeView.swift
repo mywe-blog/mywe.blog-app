@@ -74,6 +74,7 @@ struct EntryComposeView: View {
                     trailing: EditButton()
                 )
             }
+            .id(UUID())
             .navigationTitle("Post")
         }
         .listStyle(GroupedListStyle())

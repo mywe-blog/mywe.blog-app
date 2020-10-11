@@ -1,6 +1,5 @@
 import SwiftUI
 import ComposableArchitecture
-import KingfisherSwiftUI
 
 struct EntryComposeComponentView: View {
     let store: Store<EntryComposeComponentState, EntryComposeComponentAction>
@@ -23,15 +22,20 @@ struct EntryComposeComponentView: View {
                         Text("Delete")
                     }
                 }
-            case .uploadingImage:
-                Text("Uploading")
-                    .onAppear {
-                        viewStore.send(.uploadImageIfNeeded)
-                    }
-            case .imageURL(let url, _):
-                KFImage(url)
+            case .uploadingImage(let data, _):
+                VStack {
+                    Image(data: data)?
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                    Text("Uploading")
+                        .onAppear {
+                            viewStore.send(.uploadImageIfNeeded)
+                        }
+                }
+            case .imageURL(let data, _, _):
+                Image(data: data)?
                     .resizable()
-                    .scaledToFit()
+                    .aspectRatio(contentMode: .fit)
                     .contextMenu {
                         Button {
                             viewStore.send(.delete)

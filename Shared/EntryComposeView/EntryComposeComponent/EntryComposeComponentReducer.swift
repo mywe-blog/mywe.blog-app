@@ -12,12 +12,12 @@ let entryComposeComponentReducer = Reducer<EntryComposeComponentState, EntryComp
     case .changeHeadline(let text):
         state.componentType = .headline(text)
         return .none
-    case .changeImage(let url, let filename):
+    case .changeImage(let data, let url, let filename):
         guard let url = url, let filename = filename else {
             return .none
         }
 
-        state.componentType = .imageURL(url, filename)
+        state.componentType = .imageURL(data, url, filename)
 
         return .none
     case .uploadImageIfNeeded:
@@ -42,9 +42,11 @@ let entryComposeComponentReducer = Reducer<EntryComposeComponentState, EntryComp
                     print("Result \(result)")
                     switch result {
                     case .success(let uploadContent):
-                        return .changeImage(URL(string: uploadContent.commitResponse.content.downloadUrl), filename: uploadContent.filename)
+                        return .changeImage(data,
+                                            URL(string: uploadContent.commitResponse.content.downloadUrl),
+                                            filename: uploadContent.filename)
                     case .failure:
-                        return .changeImage(nil, filename: nil)
+                        return .changeImage(data, nil, filename: nil)
                     }
                 }
         default:
