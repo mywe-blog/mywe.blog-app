@@ -73,8 +73,9 @@ let entryComposeReducer = Reducer<EntryComposeState, EntryComposeAction, EntryCo
             let postContent = PostContent(
                 repo: repo,
                 accessToken: accessToken,
+                date: state.date,
                 title: state.title,
-                postfolder: state.postfolder,
+                postfolder: state.date.iso8601withFractionalSeconds,
                 content: content)
 
             let upload: Future<Empty, Error> = enviornment
@@ -97,7 +98,6 @@ let entryComposeReducer = Reducer<EntryComposeState, EntryComposeAction, EntryCo
                 state.uploadButtonTitle = "Upload"
                 state.componentStates = []
                 state.title = ""
-                state.postfolder = EntryComposeState.posfolder()
             } else {
                 state.uploadButtonTitle = "Upload failed, try again"
             }
@@ -117,7 +117,7 @@ let entryComposeReducer = Reducer<EntryComposeState, EntryComposeAction, EntryCo
                 .perform(endpoint: .uploadImage(repo: repo,
                                                  accessToken: accessToken,
                                                  imageData: data,
-                                                 postfolder: state.postfolder))
+                                                 postfolder: state.date.iso8601withFractionalSeconds))
             return upload
                 .catchToEffect()
                 .map { result in

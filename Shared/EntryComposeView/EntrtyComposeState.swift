@@ -3,7 +3,7 @@ import ComposableArchitecture
 
 struct EntryComposeState: Equatable {
     var title: String = ""
-    var postfolder = EntryComposeState.posfolder()
+    var date = Date()
     var componentStates: [EntryComposeComponentState] = []
     var settingsState: SettingsComponentState
 
@@ -14,9 +14,5 @@ struct EntryComposeState: Equatable {
     var uploadButtonTitle = "Upload"
     var uploadButtonEnabled = true
     var showsSettings = false
-
-    static func posfolder() -> String {
-        return Date().iso8601withFractionalSeconds
-    }
 }
 

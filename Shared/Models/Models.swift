@@ -16,6 +16,7 @@ public struct ImageUploadContent: Codable {
 public struct PostContent: Codable {
     let repo: String
     let accessToken: String
+    let date: Date
     let title: String?
     let postfolder: String
     let content: [ContentPart]
