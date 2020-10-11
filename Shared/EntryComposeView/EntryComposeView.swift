@@ -53,7 +53,7 @@ struct EntryComposeView: View {
                     }
                     Section {
                         Button {
-                            viewStore.send(.upload)
+                            viewStore.send(.uploadImagesIfNeeded)
                         } label: {
                             Text(viewStore.uploadButtonTitle)
                         }

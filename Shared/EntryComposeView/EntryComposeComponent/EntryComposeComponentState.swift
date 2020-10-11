@@ -4,8 +4,8 @@ struct EntryComposeComponentState: Equatable, Identifiable {
     enum ComponentType: Equatable {
         case headline(String)
         case paragraph(String)
-        case imageURL(Data, URL, String)
-        case uploadingImage(Data, startUpload: Bool)
+        case imageURL(Data, String)
+        case uploadingImage(Data)
     }
 
     var componentType: ComponentType
@@ -19,8 +19,8 @@ struct EntryComposeComponentState: Equatable, Identifiable {
             return string
         case .paragraph(let string):
             return string
-        case .imageURL(_, let url, _):
-            return url.absoluteString
+        case .imageURL:
+            return "Image"
         case .uploadingImage:
             return "Uploading"
         }
@@ -30,7 +30,7 @@ struct EntryComposeComponentState: Equatable, Identifiable {
         switch componentType {
         case .headline(let string):
             return .header(string)
-        case .imageURL(_, _, let filename):
+        case .imageURL(_, let filename):
             return .image(filename)
         case .paragraph(let string):
             return .paragraph(string)

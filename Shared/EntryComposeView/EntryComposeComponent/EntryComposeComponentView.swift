@@ -22,17 +22,21 @@ struct EntryComposeComponentView: View {
                         Text("Delete")
                     }
                 }
-            case .uploadingImage(let data, _):
+            case .uploadingImage(let data):
                 VStack {
                     Image(data: data)?
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                    Text("Uploading")
-                        .onAppear {
-                            viewStore.send(.uploadImageIfNeeded)
+                        .contextMenu {
+                            Button {
+                                viewStore.send(.delete)
+                            } label: {
+                                Text("Delete")
+                            }
                         }
+                    Text("Uploading")
                 }
-            case .imageURL(let data, _, _):
+            case .imageURL(let data, _):
                 Image(data: data)?
                     .resizable()
                     .aspectRatio(contentMode: .fit)

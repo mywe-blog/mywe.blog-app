@@ -11,6 +11,9 @@ enum EntryComposeAction {
     case settingsAction(SettingsComponentAction)
     case showSettings(Bool)
     case move(items: IndexSet, position: Int)
+    case uploadImage(position: Int)
+    case uploadImagesIfNeeded
+    case uploadedImage(Int, ImageUploadContent, Data)
     case upload
     case uploadSuccess(Bool)
 }

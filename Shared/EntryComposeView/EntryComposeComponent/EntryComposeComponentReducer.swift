@@ -17,41 +17,8 @@ let entryComposeComponentReducer = Reducer<EntryComposeComponentState, EntryComp
             return .none
         }
 
-        state.componentType = .imageURL(data, url, filename)
+        state.componentType = .imageURL(data, filename)
 
         return .none
-    case .uploadImageIfNeeded:
-        switch state.componentType {
-        case .uploadingImage(let data, let startUpload) where startUpload == true:
-            guard let accessToken = env.secretsStore.accessToken,
-                  let repo = env.secretsStore.repoName else {
-                return .none
-            }
-
-            state.componentType = .uploadingImage(data, startUpload: false)
-
-            let upload: Future<ImageUploadContent, Error> = env
-                .service
-                .perform(endpoint: .uploadImage(repo: repo,
-                                                 accessToken: accessToken,
-                                                 imageData: data,
-                                                 postfolder: state.postfolder))
-            return upload
-                .catchToEffect()
-                .map { result in
-                    print("Result \(result)")
-                    switch result {
-                    case .success(let uploadContent):
-                        return .changeImage(data,
-                                            URL(string: uploadContent.commitResponse.content.downloadUrl),
-                                            filename: uploadContent.filename)
-                    case .failure:
-                        return .changeImage(data, nil, filename: nil)
-                    }
-                }
-        default:
-            return .none
-        }
     }
-
 }

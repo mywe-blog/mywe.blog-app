@@ -31,7 +31,7 @@ let entryComposeReducer = Reducer<EntryComposeState, EntryComposeAction, EntryCo
             return .none
         case .imageSelectionResponse(let data):
             if let data = data {
-                let uploadingState = EntryComposeComponentState(componentType: .uploadingImage(data, startUpload: true),
+                let uploadingState = EntryComposeComponentState(componentType: .uploadingImage(data),
                                                                 postfolder: state.postfolder)
                 state.componentStates.append(uploadingState)
             }
@@ -68,9 +68,6 @@ let entryComposeReducer = Reducer<EntryComposeState, EntryComposeAction, EntryCo
                   let repo = enviornment.secretsStore.repoName else {
                 return .none
             }
-
-            state.uploadButtonTitle = "Uploading"
-            state.uploadButtonEnabled = false
 
             let content = state.componentStates.compactMap { state in
                 state.toContentPart()
@@ -109,6 +106,51 @@ let entryComposeReducer = Reducer<EntryComposeState, EntryComposeAction, EntryCo
             }
 
             return .none
+        case .uploadImage(let position):
+            let position = position
+            var imageState = state.componentStates[position]
+            guard let accessToken = enviornment.secretsStore.accessToken,
+                  let repo = enviornment.secretsStore.repoName,
+                  case .uploadingImage(let data) = imageState.componentType else {
+                return .none
+            }
+
+            let upload: Future<ImageUploadContent, Error> = enviornment
+                .service
+                .perform(endpoint: .uploadImage(repo: repo,
+                                                 accessToken: accessToken,
+                                                 imageData: data,
+                                                 postfolder: state.postfolder))
+            return upload
+                .catchToEffect()
+                .map { result in
+                    print("Result \(result)")
+                    switch result {
+                    case .success(let uploadContent):
+                        imageState.componentType = .imageURL(data,
+                                                             uploadContent.filename)
+                        return .uploadedImage(position, uploadContent, data)
+                    case .failure:
+                        return .uploadSuccess(false)
+                    }
+                }
+        case .uploadImagesIfNeeded:
+            state.uploadButtonTitle = "Uploading"
+            state.uploadButtonEnabled = false
+
+            for (index, state) in state.componentStates.enumerated() {
+                if case .uploadingImage(_) = state.componentType {
+                    return Effect(value: EntryComposeAction.uploadImage(position: index))
+                }
+            }
+
+            return Effect(value: EntryComposeAction.upload)
+        case .uploadedImage(let position, let uploadContent, let data):
+            var imageState = state.componentStates[position]
+            imageState.componentType = .imageURL(data,
+                                                 uploadContent.filename)
+            state.componentStates[position] = imageState
+            return Effect(value: .uploadImagesIfNeeded)
         }
     },
     settingsComponentReducer.pullback(state: \EntryComposeState.settingsState,
