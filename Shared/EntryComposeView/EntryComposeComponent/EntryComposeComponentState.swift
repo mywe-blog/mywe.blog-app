@@ -11,7 +11,6 @@ struct EntryComposeComponentState: Equatable, Identifiable {
     var componentType: ComponentType
 
     let id: UUID = UUID()
-    let postfolder: String
 
     var text: String {
         switch componentType {

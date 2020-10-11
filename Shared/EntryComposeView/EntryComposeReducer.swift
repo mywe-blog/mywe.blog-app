@@ -17,13 +17,11 @@ let entryComposeReducer = Reducer<EntryComposeState, EntryComposeAction, EntryCo
             state.title = title
             return .none
         case .addParagraph:
-            let paragraphState = EntryComposeComponentState(componentType: .paragraph(""),
-                                                            postfolder: state.postfolder)
+            let paragraphState = EntryComposeComponentState(componentType: .paragraph(""))
             state.componentStates.append(paragraphState)
             return .none
         case .addHeadline:
-            let paragraphState = EntryComposeComponentState(componentType: .headline(""),
-                                                            postfolder: state.postfolder)
+            let paragraphState = EntryComposeComponentState(componentType: .headline(""))
             state.componentStates.append(paragraphState)
             return .none
         case .selectImage:
@@ -31,8 +29,7 @@ let entryComposeReducer = Reducer<EntryComposeState, EntryComposeAction, EntryCo
             return .none
         case .imageSelectionResponse(let data):
             if let data = data {
-                let uploadingState = EntryComposeComponentState(componentType: .uploadingImage(data),
-                                                                postfolder: state.postfolder)
+                let uploadingState = EntryComposeComponentState(componentType: .uploadingImage(data))
                 state.componentStates.append(uploadingState)
             }
             
