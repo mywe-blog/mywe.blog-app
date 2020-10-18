@@ -63,6 +63,30 @@ struct EntryComposeComponentView: View {
                         Text("Delete")
                     }
                 }
+            case .link(let title, let urlString):
+                VStack {
+                    MultilineTextEditor(
+                        placeholder: "Link Title",
+                        text: viewStore.binding(
+                            get: { _ in return title },
+                            send: EntryComposeComponentAction.changeLinkTitle
+                        )
+                    )
+                    MultilineTextEditor(
+                        placeholder: "Link URL",
+                        text: viewStore.binding(
+                            get: { _ in return urlString },
+                            send: EntryComposeComponentAction.changeLinkURLString
+                        )
+                    )
+                }
+                .contextMenu {
+                    Button {
+                        viewStore.send(.delete)
+                    } label: {
+                        Text("Delete")
+                    }
+                }
             }
         }
     }

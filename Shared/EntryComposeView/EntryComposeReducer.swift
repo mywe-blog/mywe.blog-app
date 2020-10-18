@@ -24,6 +24,10 @@ let entryComposeReducer = Reducer<EntryComposeState, EntryComposeAction, EntryCo
             let paragraphState = EntryComposeComponentState(componentType: .headline(""))
             state.componentStates.append(paragraphState)
             return .none
+        case .addLink:
+            let linkState = EntryComposeComponentState(componentType: .link(title: "", urlString: ""))
+            state.componentStates.append(linkState)
+            return .none
         case .selectImage:
             state.showsImagePicker = true
             return .none

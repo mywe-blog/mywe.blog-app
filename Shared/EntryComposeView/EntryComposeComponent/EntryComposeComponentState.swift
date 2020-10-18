@@ -5,6 +5,7 @@ struct EntryComposeComponentState: Equatable, Identifiable {
         case headline(String)
         case paragraph(String)
         case imageURL(Data, String)
+        case link(title: String, urlString: String)
         case uploadingImage(Data)
     }
 
@@ -22,6 +23,8 @@ struct EntryComposeComponentState: Equatable, Identifiable {
             return "Image"
         case .uploadingImage:
             return "Uploading"
+        case .link:
+            return "Link"
         }
     }
 
@@ -35,6 +38,8 @@ struct EntryComposeComponentState: Equatable, Identifiable {
             return .paragraph(string)
         case .uploadingImage:
             return nil
+        case .link(let title, let urlString):
+            return .link(title: title, urlString: urlString)
         }
     }
 }

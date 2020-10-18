@@ -7,6 +7,7 @@ enum EntryComposeAction {
     case imageSelectionResponse(Data?)
     case addParagraph
     case addHeadline
+    case addLink
     case composeAction(Int, EntryComposeComponentAction)
     case settingsAction(SettingsComponentAction)
     case showSettings(Bool)

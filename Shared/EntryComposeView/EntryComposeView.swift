@@ -37,6 +37,9 @@ struct EntryComposeView: View {
                         Button("Add Headline") {
                             viewStore.send(.addHeadline)
                         }
+                        Button("Add Link") {
+                            viewStore.send(.addLink)
+                        }
                         Button("Add Image") {
                             viewStore.send(.showsImagePicker(true))
                         }.sheet(

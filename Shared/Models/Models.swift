@@ -30,6 +30,7 @@ public enum ContentPart: Codable, Identifiable {
     case header(String)
     case paragraph(String)
     case image(filename: String)
+    case link(title: String, urlString: String)
 
     enum CodingError: Error {
         case decoding(String)
@@ -68,8 +69,15 @@ public enum ContentPart: Codable, Identifiable {
             }
 
             self = .image(filename: valueString)
+        case "Link":
+            guard let title = try? container.decode(String.self, forKey: .title),
+                  let urlString = try? container.decode(String.self, forKey: .url) else {
+                throw CodingError.decoding("ContentPart couldn't be decoded")
+            }
+
+            self = .link(title: title, urlString: urlString)
         default:
-            throw CodingError.decoding("ImageResource couldn't be decoded")
+            throw CodingError.decoding("ContentPart couldn't be decoded")
         }
     }
 
@@ -86,6 +94,10 @@ public enum ContentPart: Codable, Identifiable {
         case .image(let value):
             try? container.encode("Image", forKey: .type)
             try? container.encode(value, forKey: .filename)
+        case .link(let title, let urlString):
+            try? container.encode("Link", forKey: .type)
+            try? container.encode(title, forKey: .title)
+            try? container.encode(urlString, forKey: .url)
         }
     }
 }
