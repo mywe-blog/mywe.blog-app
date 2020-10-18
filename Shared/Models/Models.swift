@@ -29,7 +29,7 @@ public enum ContentPart: Codable, Identifiable {
 
     case header(String)
     case paragraph(String)
-    case image(String)
+    case image(filename: String)
 
     enum CodingError: Error {
         case decoding(String)
@@ -37,23 +37,37 @@ public enum ContentPart: Codable, Identifiable {
 
     enum CodingKeys: String, CodingKey {
         case type
-        case value
+        case text
+        case filename
+        case title
+        case url
     }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard let typeString = try? container.decode(String.self, forKey: .type),
-            let valueString = try? container.decode(String.self, forKey: .value) else {
+        guard let typeString = try? container.decode(String.self, forKey: .type) else {
             throw CodingError.decoding("ContentPart couldn't be decoded")
         }
 
         switch typeString {
         case "Header":
+            guard let valueString = try? container.decode(String.self, forKey: .text) else {
+                throw CodingError.decoding("ContentPart couldn't be decoded")
+            }
+
             self = .header(valueString)
         case "Paragraph":
+            guard let valueString = try? container.decode(String.self, forKey: .text) else {
+                throw CodingError.decoding("ContentPart couldn't be decoded")
+            }
+
             self = .paragraph(valueString)
         case "Image":
-            self = .image(valueString)
+            guard let valueString = try? container.decode(String.self, forKey: .filename) else {
+                throw CodingError.decoding("ContentPart couldn't be decoded")
+            }
+
+            self = .image(filename: valueString)
         default:
             throw CodingError.decoding("ImageResource couldn't be decoded")
         }
@@ -65,13 +79,13 @@ public enum ContentPart: Codable, Identifiable {
         switch self {
         case .header(let value):
             try? container.encode("Header", forKey: .type)
-            try? container.encode(value, forKey: .value)
+            try? container.encode(value, forKey: .text)
         case .paragraph(let value):
             try? container.encode("Paragraph", forKey: .type)
-            try? container.encode(value, forKey: .value)
+            try? container.encode(value, forKey: .text)
         case .image(let value):
             try? container.encode("Image", forKey: .type)
-            try? container.encode(value, forKey: .value)
+            try? container.encode(value, forKey: .filename)
         }
     }
 }

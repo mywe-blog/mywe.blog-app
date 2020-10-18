@@ -30,7 +30,7 @@ struct EntryComposeComponentState: Equatable, Identifiable {
         case .headline(let string):
             return .header(string)
         case .imageURL(_, let filename):
-            return .image(filename)
+            return .image(filename: filename)
         case .paragraph(let string):
             return .paragraph(string)
         case .uploadingImage:
