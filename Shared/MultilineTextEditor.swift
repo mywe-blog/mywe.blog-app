@@ -1,5 +1,6 @@
 import Foundation
 import SwiftUI
+import UIKit
 
 struct MultilineTextEditor: View {
     let placeholder: String
@@ -12,12 +13,15 @@ struct MultilineTextEditor: View {
         self.placeholder = placeholder
         self.font = font
         self._text = text
+
+        UITextView.appearance().backgroundColor = .clear
     }
 
     var body: some View {
         ZStack {
             TextEditor(text: $text)
                 .font(font)
+                .background(.clear)
             if text.isEmpty {
                 HStack {
                     Text(placeholder)

@@ -79,7 +79,7 @@ struct EntryComposeView: View {
             }
             .navigationTitle("Post")
         }
-        .listStyle(GroupedListStyle())
+        .listStyle(InsetGroupedListStyle())
     }
 
     private func settingsView(store: Store<EntryComposeState, EntryComposeAction>) -> some View {
