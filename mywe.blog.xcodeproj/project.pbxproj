@@ -22,7 +22,7 @@
 		C5697AC82520518500480F02 /* EntryComposeAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5697AC72520518500480F02 /* EntryComposeAction.swift */; };
 		C5697ACC2520521100480F02 /* EntryComposeEnviornment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5697ACB2520521100480F02 /* EntryComposeEnviornment.swift */; };
 		C5697AD02520524800480F02 /* EntryComposeReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5697ACF2520524800480F02 /* EntryComposeReducer.swift */; };
-		C5697AD42520535600480F02 /* EntryComposeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5697AD32520535600480F02 /* EntryComposeView.swift */; };
+		C5697AD42520535600480F02 /* EntryComposeView.ios.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5697AD32520535600480F02 /* EntryComposeView.ios.swift */; };
 		C5697AD82520703400480F02 /* EntryComposeComponentAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5697AD72520703400480F02 /* EntryComposeComponentAction.swift */; };
 		C580C5DE252846370087C3E6 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = C580C5DD252846370087C3E6 /* KeychainAccess */; };
 		C580C5E2252846570087C3E6 /* SecretsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C580C5E1252846570087C3E6 /* SecretsStore.swift */; };
@@ -31,7 +31,7 @@
 		C5C23F6F252858D9002DD836 /* EntryComposeComponentReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C23F6E252858D9002DD836 /* EntryComposeComponentReducer.swift */; };
 		C5C23F7325285940002DD836 /* EntryComposeComponentEnviornment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C23F7225285940002DD836 /* EntryComposeComponentEnviornment.swift */; };
 		C5C23F7725285974002DD836 /* EntryComposeComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C23F7625285974002DD836 /* EntryComposeComponentView.swift */; };
-		C5C23F7C252859D0002DD836 /* SettingsComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C23F7B252859D0002DD836 /* SettingsComponentView.swift */; };
+		C5C23F7C252859D0002DD836 /* SettingsComponentView.ios.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C23F7B252859D0002DD836 /* SettingsComponentView.ios.swift */; };
 		C5CBBDD325171A7A0070B8D1 /* MyWeBlogApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CBBDC025171A790070B8D1 /* MyWeBlogApp.swift */; };
 		C5CBBDD425171A7A0070B8D1 /* MyWeBlogApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CBBDC025171A790070B8D1 /* MyWeBlogApp.swift */; };
 		C5CBBDD725171A7A0070B8D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5CBBDC225171A7A0070B8D1 /* Assets.xcassets */; };
@@ -41,6 +41,24 @@
 		C5CBBDEB25171D960070B8D1 /* MyWeBlogService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CBBDEA25171D960070B8D1 /* MyWeBlogService.swift */; };
 		C5CBBDEC25171D960070B8D1 /* MyWeBlogService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CBBDEA25171D960070B8D1 /* MyWeBlogService.swift */; };
 		C5DFAFB12519C97600D34030 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = C5DFAFB02519C97600D34030 /* Alamofire */; };
+		C5E0E7A72560F001003365F2 /* EntryComposeAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5697AC72520518500480F02 /* EntryComposeAction.swift */; };
+		C5E0E7A82560F001003365F2 /* EntrtyComposeState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5697ABA25204E2400480F02 /* EntrtyComposeState.swift */; };
+		C5E0E7A92560F001003365F2 /* EntryComposeReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5697ACF2520524800480F02 /* EntryComposeReducer.swift */; };
+		C5E0E7AA2560F001003365F2 /* EntryComposeEnviornment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5697ACB2520521100480F02 /* EntryComposeEnviornment.swift */; };
+		C5E0E7AD2560F004003365F2 /* EntryComposeComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C23F7625285974002DD836 /* EntryComposeComponentView.swift */; };
+		C5E0E7AE2560F004003365F2 /* EntryComposeComponentReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C23F6E252858D9002DD836 /* EntryComposeComponentReducer.swift */; };
+		C5E0E7AF2560F004003365F2 /* EntryComposeComponentEnviornment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C23F7225285940002DD836 /* EntryComposeComponentEnviornment.swift */; };
+		C5E0E7B02560F004003365F2 /* EntryComposeComponentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5697AC12520504900480F02 /* EntryComposeComponentState.swift */; };
+		C5E0E7B12560F004003365F2 /* EntryComposeComponentAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5697AD72520703400480F02 /* EntryComposeComponentAction.swift */; };
+		C5E0E7B42560F008003365F2 /* SettingsComponentEnviornment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5375C302529987E00EA2260 /* SettingsComponentEnviornment.swift */; };
+		C5E0E7B62560F008003365F2 /* SettingsComponentAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5375C362529989A00EA2260 /* SettingsComponentAction.swift */; };
+		C5E0E7B72560F008003365F2 /* SettingsComponentReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5375C3A252998BA00EA2260 /* SettingsComponentReducer.swift */; };
+		C5E0E7B82560F008003365F2 /* SettingsComponentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5375C2A2529984F00EA2260 /* SettingsComponentState.swift */; };
+		C5E0E7BC2560F019003365F2 /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = C5E0E7BB2560F019003365F2 /* SwiftUIX */; };
+		C5E0E7BF2560F046003365F2 /* MultilineTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5375C422529994800EA2260 /* MultilineTextEditor.swift */; };
+		C5E0E7C22560F04B003365F2 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5375C462529C23600EA2260 /* Date+Extension.swift */; };
+		C5E0E7C82560F4DE003365F2 /* EntryComposeView.mac.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E0E7C72560F4DE003365F2 /* EntryComposeView.mac.swift */; };
+		C5E0E7CC2560F515003365F2 /* SettingsComponentView.mac.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E0E7CB2560F515003365F2 /* SettingsComponentView.mac.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,13 +73,13 @@
 		C5697AC72520518500480F02 /* EntryComposeAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryComposeAction.swift; sourceTree = "<group>"; };
 		C5697ACB2520521100480F02 /* EntryComposeEnviornment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryComposeEnviornment.swift; sourceTree = "<group>"; };
 		C5697ACF2520524800480F02 /* EntryComposeReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryComposeReducer.swift; sourceTree = "<group>"; };
-		C5697AD32520535600480F02 /* EntryComposeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryComposeView.swift; sourceTree = "<group>"; };
+		C5697AD32520535600480F02 /* EntryComposeView.ios.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryComposeView.ios.swift; sourceTree = "<group>"; };
 		C5697AD72520703400480F02 /* EntryComposeComponentAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryComposeComponentAction.swift; sourceTree = "<group>"; };
 		C580C5E1252846570087C3E6 /* SecretsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretsStore.swift; sourceTree = "<group>"; };
 		C5C23F6E252858D9002DD836 /* EntryComposeComponentReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryComposeComponentReducer.swift; sourceTree = "<group>"; };
 		C5C23F7225285940002DD836 /* EntryComposeComponentEnviornment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryComposeComponentEnviornment.swift; sourceTree = "<group>"; };
 		C5C23F7625285974002DD836 /* EntryComposeComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryComposeComponentView.swift; sourceTree = "<group>"; };
-		C5C23F7B252859D0002DD836 /* SettingsComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsComponentView.swift; sourceTree = "<group>"; };
+		C5C23F7B252859D0002DD836 /* SettingsComponentView.ios.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsComponentView.ios.swift; sourceTree = "<group>"; };
 		C5CBBDC025171A790070B8D1 /* MyWeBlogApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWeBlogApp.swift; sourceTree = "<group>"; };
 		C5CBBDC225171A7A0070B8D1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C5CBBDC725171A7A0070B8D1 /* mywe.blog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mywe.blog.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -71,6 +89,8 @@
 		C5CBBDD225171A7A0070B8D1 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		C5CBBDE425171B070070B8D1 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		C5CBBDEA25171D960070B8D1 /* MyWeBlogService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWeBlogService.swift; sourceTree = "<group>"; };
+		C5E0E7C72560F4DE003365F2 /* EntryComposeView.mac.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryComposeView.mac.swift; sourceTree = "<group>"; };
+		C5E0E7CB2560F515003365F2 /* SettingsComponentView.mac.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsComponentView.mac.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +112,7 @@
 				C562510E2531E023006ADCEA /* KeychainAccess in Frameworks */,
 				C562510A2531E019006ADCEA /* Alamofire in Frameworks */,
 				C56251122531E02C006ADCEA /* ComposableArchitecture in Frameworks */,
+				C5E0E7BC2560F019003365F2 /* SwiftUIX in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -113,7 +134,8 @@
 				C5697AC72520518500480F02 /* EntryComposeAction.swift */,
 				C5697ACB2520521100480F02 /* EntryComposeEnviornment.swift */,
 				C5697ACF2520524800480F02 /* EntryComposeReducer.swift */,
-				C5697AD32520535600480F02 /* EntryComposeView.swift */,
+				C5697AD32520535600480F02 /* EntryComposeView.ios.swift */,
+				C5E0E7C72560F4DE003365F2 /* EntryComposeView.mac.swift */,
 			);
 			path = EntryComposeView;
 			sourceTree = "<group>";
@@ -133,7 +155,8 @@
 		C5C23F7A252859B4002DD836 /* SettingsComponent */ = {
 			isa = PBXGroup;
 			children = (
-				C5C23F7B252859D0002DD836 /* SettingsComponentView.swift */,
+				C5C23F7B252859D0002DD836 /* SettingsComponentView.ios.swift */,
+				C5E0E7CB2560F515003365F2 /* SettingsComponentView.mac.swift */,
 				C5375C3A252998BA00EA2260 /* SettingsComponentReducer.swift */,
 				C5375C362529989A00EA2260 /* SettingsComponentAction.swift */,
 				C5375C302529987E00EA2260 /* SettingsComponentEnviornment.swift */,
@@ -254,6 +277,7 @@
 				C56251092531E019006ADCEA /* Alamofire */,
 				C562510D2531E023006ADCEA /* KeychainAccess */,
 				C56251112531E02C006ADCEA /* ComposableArchitecture */,
+				C5E0E7BB2560F019003365F2 /* SwiftUIX */,
 			);
 			productName = "Chasm.blog (macOS)";
 			productReference = C5CBBDCF25171A7A0070B8D1 /* mywe.blog.app */;
@@ -330,8 +354,8 @@
 				C5CBBDEB25171D960070B8D1 /* MyWeBlogService.swift in Sources */,
 				C5C23F7725285974002DD836 /* EntryComposeComponentView.swift in Sources */,
 				C5697AD82520703400480F02 /* EntryComposeComponentAction.swift in Sources */,
-				C5C23F7C252859D0002DD836 /* SettingsComponentView.swift in Sources */,
-				C5697AD42520535600480F02 /* EntryComposeView.swift in Sources */,
+				C5C23F7C252859D0002DD836 /* SettingsComponentView.ios.swift in Sources */,
+				C5697AD42520535600480F02 /* EntryComposeView.ios.swift in Sources */,
 				C5CBBDE525171B070070B8D1 /* Models.swift in Sources */,
 				C5375C312529987E00EA2260 /* SettingsComponentEnviornment.swift in Sources */,
 				C5697AC22520504900480F02 /* EntryComposeComponentState.swift in Sources */,
@@ -354,9 +378,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				C5CBBDEC25171D960070B8D1 /* MyWeBlogService.swift in Sources */,
+				C5E0E7A72560F001003365F2 /* EntryComposeAction.swift in Sources */,
+				C5E0E7C82560F4DE003365F2 /* EntryComposeView.mac.swift in Sources */,
 				C580C5E3252846570087C3E6 /* SecretsStore.swift in Sources */,
+				C5E0E7A82560F001003365F2 /* EntrtyComposeState.swift in Sources */,
+				C5E0E7AF2560F004003365F2 /* EntryComposeComponentEnviornment.swift in Sources */,
+				C5E0E7B62560F008003365F2 /* SettingsComponentAction.swift in Sources */,
 				C5CBBDE625171B070070B8D1 /* Models.swift in Sources */,
+				C5E0E7B72560F008003365F2 /* SettingsComponentReducer.swift in Sources */,
+				C5E0E7B12560F004003365F2 /* EntryComposeComponentAction.swift in Sources */,
+				C5E0E7C22560F04B003365F2 /* Date+Extension.swift in Sources */,
+				C5E0E7AE2560F004003365F2 /* EntryComposeComponentReducer.swift in Sources */,
+				C5E0E7A92560F001003365F2 /* EntryComposeReducer.swift in Sources */,
+				C5E0E7CC2560F515003365F2 /* SettingsComponentView.mac.swift in Sources */,
+				C5E0E7AA2560F001003365F2 /* EntryComposeEnviornment.swift in Sources */,
+				C5E0E7B42560F008003365F2 /* SettingsComponentEnviornment.swift in Sources */,
+				C5E0E7B02560F004003365F2 /* EntryComposeComponentState.swift in Sources */,
+				C5E0E7AD2560F004003365F2 /* EntryComposeComponentView.swift in Sources */,
+				C5E0E7B82560F008003365F2 /* SettingsComponentState.swift in Sources */,
 				C5CBBDD425171A7A0070B8D1 /* MyWeBlogApp.swift in Sources */,
+				C5E0E7BF2560F046003365F2 /* MultilineTextEditor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -669,6 +710,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C5DFAFAF2519C97600D34030 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		C5E0E7BB2560F019003365F2 /* SwiftUIX */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C581D7AF2517726A0079F9C3 /* XCRemoteSwiftPackageReference "SwiftUIX" */;
+			productName = SwiftUIX;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

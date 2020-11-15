@@ -1,6 +1,9 @@
 import Foundation
 import SwiftUI
+
+#if !os(macOS)
 import UIKit
+#endif
 
 struct MultilineTextEditor: View {
     let placeholder: String
@@ -14,7 +17,9 @@ struct MultilineTextEditor: View {
         self.font = font
         self._text = text
 
+        #if !os(macOS)
         UITextView.appearance().backgroundColor = .clear
+        #endif
     }
 
     var body: some View {
