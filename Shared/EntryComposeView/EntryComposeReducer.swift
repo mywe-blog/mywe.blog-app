@@ -50,6 +50,9 @@ let entryComposeReducer = Reducer<EntryComposeState, EntryComposeAction, EntryCo
             switch action {
             case .dismiss:
                 state.showsSettings = false
+
+                state.uploadButtonEnabled = true
+                state.uploadMessage = nil
                 return .none
             default:
                 return .none
@@ -67,6 +70,9 @@ let entryComposeReducer = Reducer<EntryComposeState, EntryComposeAction, EntryCo
         case .uploadPost:
             guard let accessToken = enviornment.secretsStore.accessToken,
                   let repo = enviornment.secretsStore.repoName else {
+                state.uploadMessage = "Not logged in"
+                state.uploadButtonEnabled = false
+
                 return .none
             }
 

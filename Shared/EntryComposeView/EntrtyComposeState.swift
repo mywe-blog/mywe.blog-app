@@ -13,6 +13,7 @@ struct EntryComposeState: Equatable {
     var pickedImage: Data?
     var uploadButtonTitle = "Upload"
     var uploadButtonEnabled = true
+    var uploadMessage: String? = nil
     var showsSettings = false
 }
 

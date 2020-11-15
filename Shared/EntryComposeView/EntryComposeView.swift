@@ -61,6 +61,9 @@ struct EntryComposeView: View {
                             Text(viewStore.uploadButtonTitle)
                         }
                         .disabled(!viewStore.uploadButtonEnabled)
+                        viewStore.uploadMessage.map {
+                            Text($0)
+                        }
                     }
                 }
                 .popover(
