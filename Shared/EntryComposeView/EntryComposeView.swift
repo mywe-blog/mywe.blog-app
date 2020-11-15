@@ -9,62 +9,10 @@ struct EntryComposeView: View {
         NavigationView {
             WithViewStore(store) { viewStore in
                 List {
-                    Section {
-                        MultilineTextEditor(
-                            placeholder: "Title",
-                            text: viewStore.binding(
-                                get: { $0.title },
-                                send: EntryComposeAction.updateTitle(text:)
-                            )
-                        )
-                    }
-                    Section {
-                        ForEachStore(
-                            self.store.scope(
-                                state: \.componentStates,
-                                action: EntryComposeAction.composeAction
-                            ),
-                            content: EntryComposeComponentView.init(store:)
-                        )
-                        .onMove { items, position in
-                            viewStore.send(.move(items: items, position: position))
-                        }
-                    }
-                    Section {
-                        Button("Add paragraph") {
-                            viewStore.send(.addParagraph)
-                        }
-                        Button("Add Headline") {
-                            viewStore.send(.addHeadline)
-                        }
-                        Button("Add Link") {
-                            viewStore.send(.addLink)
-                        }
-                        Button("Add Image") {
-                            viewStore.send(.showsImagePicker(true))
-                        }.sheet(
-                            isPresented: viewStore.binding(get: { $0.showsImagePicker},
-                                                           send: EntryComposeAction.showsImagePicker)
-                        ) {
-                            ImagePicker(
-                                data: viewStore.binding(get: { $0.pickedImage },
-                                                        send: EntryComposeAction.imageSelectionResponse
-                                ),
-                                encoding: .jpeg(compressionQuality: 85)
-                            )
-                        }
-                    }
-                    Section {
-                        Button {
-                            viewStore.send(.upload)
-                        } label: {
-                            Text(viewStore.uploadButtonTitle)
-                        }
-                        .disabled(!viewStore.uploadButtonEnabled)
-                        viewStore.uploadMessage.map {
-                            Text($0)
-                        }
-                    }
+                    TitleSection(viewStore: viewStore)
+                    ComponentsSection(viewStore: viewStore, store: store)
+                    ButtonSection(viewStore: viewStore)
+                    UploadSection(viewStore: viewStore)
                 }
                 .popover(
                     isPresented: viewStore.binding(get: { $0.showsSettings},
@@ -90,5 +38,90 @@ struct EntryComposeView: View {
                                 action: EntryComposeAction.settingsAction)
         return SettingsComponentView(store: store)
     }
+
+    private struct UploadSection: View {
+        let viewStore: ViewStore<EntryComposeState, EntryComposeAction>
+
+        var body: some View {
+            Section {
+                Button {
+                    viewStore.send(.upload)
+                } label: {
+                    Text(viewStore.uploadButtonTitle)
+                }
+                .disabled(!viewStore.uploadButtonEnabled)
+                viewStore.uploadMessage.map {
+                    Text($0)
+                }
+            }
+        }
+    }
+
+    private struct ButtonSection: View {
+        let viewStore: ViewStore<EntryComposeState, EntryComposeAction>
+
+        var body: some View {
+            Section {
+                Button("Add paragraph") {
+                    viewStore.send(.addParagraph)
+                }
+                Button("Add Headline") {
+                    viewStore.send(.addHeadline)
+                }
+                Button("Add Link") {
+                    viewStore.send(.addLink)
+                }
+                Button("Add Image") {
+                    viewStore.send(.showsImagePicker(true))
+                }.sheet(
+                    isPresented: viewStore.binding(get: { $0.showsImagePicker},
+                                                   send: EntryComposeAction.showsImagePicker)
+                ) {
+                    ImagePicker(
+                        data: viewStore.binding(get: { $0.pickedImage },
+                                                send: EntryComposeAction.imageSelectionResponse
+                        ),
+                        encoding: .jpeg(compressionQuality: 85)
+                    )
+                }
+            }
+        }
+    }
+
+    private struct ComponentsSection: View {
+        let viewStore: ViewStore<EntryComposeState, EntryComposeAction>
+        let store: Store<EntryComposeState, EntryComposeAction>
+
+        var body: some View {
+            Section {
+                ForEachStore(
+                    self.store.scope(
+                        state: \.componentStates,
+                        action: EntryComposeAction.composeAction
+                    ),
+                    content: EntryComposeComponentView.init(store:)
+                )
+                .onMove { items, position in
+                    viewStore.send(.move(items: items, position: position))
+                }
+            }
+        }
+    }
+
+    private struct TitleSection: View {
+            let viewStore: ViewStore<EntryComposeState, EntryComposeAction>
+
+            var body: some View {
+                Section {
+                    MultilineTextEditor(
+                        placeholder: "Title",
+                        text: viewStore.binding(
+                            get: { $0.title },
+                            send: EntryComposeAction.updateTitle(text:)
+                        )
+                    )
+                }
+            }
+        }
 }
 
