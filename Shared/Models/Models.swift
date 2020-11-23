@@ -9,13 +9,12 @@ public struct ImageUploadContent: Codable {
         let content: Content
     }
 
-    let commitResponse: CommitResponse
+    let commitResponse: CommitResponse?
     let filename: String
 }
 
 public struct PostContent: Codable {
-    let repo: String
-    let accessToken: String
+    let location: ContentLocation
     let date: Date
     let title: String?
     let postfolder: String
@@ -98,6 +97,65 @@ public enum ContentPart: Codable, Identifiable {
             try? container.encode("Link", forKey: .type)
             try? container.encode(title, forKey: .title)
             try? container.encode(urlString, forKey: .url)
+        }
+    }
+}
+
+public enum ContentLocation: Codable, Identifiable {
+    public var id: UUID {
+        return UUID()
+    }
+
+    case github(repo: String, accessToken: String)
+    case local(path: String)
+
+    enum CodingError: Error {
+        case decoding(String)
+    }
+
+    enum CodingKeys: String, CodingKey {
+        case type
+        case repo
+        case accessToken
+        case path
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard let typeString = try? container.decode(String.self, forKey: .type) else {
+            throw CodingError.decoding("ContentPart couldn't be decoded")
+        }
+
+        switch typeString {
+        case "Github":
+            guard let repoString = try? container.decode(String.self, forKey: .repo),
+                  let accessTokenString = try? container.decode(String.self, forKey: .accessToken) else {
+                throw CodingError.decoding("ContentLocation couldn't be decoded")
+            }
+
+            self = .github(repo: repoString, accessToken: accessTokenString)
+        case "Local":
+            guard let valueString = try? container.decode(String.self, forKey: .path) else {
+                throw CodingError.decoding("ContentLocation couldn't be decoded")
+            }
+
+            self = .local(path: valueString)
+        default:
+            throw CodingError.decoding("ContentPart couldn't be decoded")
+        }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+
+        switch self {
+        case .github(let repo, let accessToken):
+            try? container.encode("Github", forKey: .type)
+            try? container.encode(repo, forKey: .repo)
+            try? container.encode(accessToken, forKey: .accessToken)
+        case .local(let path):
+            try? container.encode("Local", forKey: .type)
+            try? container.encode(path, forKey: .path)
         }
     }
 }

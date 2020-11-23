@@ -59,7 +59,7 @@ public final class MyWeBlogService {
 
     public enum Endpoint {
         case createEntry(_ entry: PostContent)
-        case uploadImage(repo: String, accessToken: String, imageData: Data, postfolder: String)
+        case uploadImage(contentLocation: ContentLocation, imageData: Data, postfolder: String)
 
         var path: String {
             switch self {
@@ -121,13 +121,18 @@ public final class MyWeBlogService {
         let queryURL = baseURL.appendingPathComponent(endpoint.path)
 
         switch endpoint {
-        case .uploadImage(let repo, let accessToken, let imageData, let postfolder):
+        case .uploadImage(let location, let imageData, let postfolder):
             return Future<T, Error> { promise in
                 let filename = UUID().uuidString + ".jpg"
                 AF.upload(multipartFormData: { multipartFormData in
-                    multipartFormData.append(repo.data(using: .utf8)!, withName: "repo")
+                    switch location {
+                    case .github(let repo, let accessToken):
+                        multipartFormData.append(repo.data(using: .utf8)!, withName: "repo")
+                        multipartFormData.append(accessToken.data(using: .utf8)!, withName: "access_token")
+                    case .local(let path):
+                        multipartFormData.append(path.data(using: .utf8)!, withName: "local_path")
+                    }
                     multipartFormData.append(postfolder.data(using: .utf8)!, withName: "postfolder")
-                    multipartFormData.append(accessToken.data(using: .utf8)!, withName: "access_token")
                     multipartFormData.append(imageData, withName: "file", fileName: filename, mimeType: "image/jpeg")
                 },
                 to: queryURL,

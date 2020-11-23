@@ -68,8 +68,7 @@ let entryComposeReducer = Reducer<EntryComposeState, EntryComposeAction, EntryCo
             state.componentStates.move(fromOffsets: items, toOffset: position)
             return .none
         case .uploadPost:
-            guard let accessToken = enviornment.secretsStore.accessToken,
-                  let repo = enviornment.secretsStore.repoName else {
+            guard let location = enviornment.secretsStore.contentLocation else {
                 state.uploadMessage = "Not logged in"
                 state.uploadButtonEnabled = false
 
@@ -81,8 +80,7 @@ let entryComposeReducer = Reducer<EntryComposeState, EntryComposeAction, EntryCo
             }
 
             let postContent = PostContent(
-                repo: repo,
-                accessToken: accessToken,
+                location: location,
                 date: state.date,
                 title: state.title,
                 postfolder: state.date.iso8601withFractionalSeconds,
@@ -116,18 +114,16 @@ let entryComposeReducer = Reducer<EntryComposeState, EntryComposeAction, EntryCo
         case .uploadImage(let position):
             let position = position
             var imageState = state.componentStates[position]
-            guard let accessToken = enviornment.secretsStore.accessToken,
-                  let repo = enviornment.secretsStore.repoName,
+            guard let location = enviornment.secretsStore.contentLocation,
                   case .uploadingImage(let data) = imageState.componentType else {
                 return .none
             }
 
             let upload: Future<ImageUploadContent, Error> = enviornment
                 .service
-                .perform(endpoint: .uploadImage(repo: repo,
-                                                 accessToken: accessToken,
-                                                 imageData: data,
-                                                 postfolder: state.date.iso8601withFractionalSeconds))
+                .perform(endpoint: .uploadImage(contentLocation: location,
+                                                imageData: data,
+                                                postfolder: state.date.iso8601withFractionalSeconds))
             return upload
                 .catchToEffect()
                 .map { result in

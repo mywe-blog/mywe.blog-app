@@ -11,7 +11,30 @@ struct EntryComposeView: View {
                 List {
                     TitleSection(viewStore: viewStore)
                     ComponentsSection(viewStore: viewStore, store: store)
-                    ButtonSection(viewStore: viewStore)
+                    Section {
+                        Button("Add paragraph") {
+                            viewStore.send(.addParagraph)
+                        }
+                        Button("Add Headline") {
+                            viewStore.send(.addHeadline)
+                        }
+                        Button("Add Link") {
+                            viewStore.send(.addLink)
+                        }
+                        Button("Add Image") {
+                            viewStore.send(.showsImagePicker(true))
+                        }.sheet(
+                            isPresented: viewStore.binding(get: { $0.showsImagePicker},
+                                                           send: EntryComposeAction.showsImagePicker)
+                        ) {
+                            ImagePicker(
+                                data: viewStore.binding(get: { $0.pickedImage },
+                                                        send: EntryComposeAction.imageSelectionResponse
+                                ),
+                                encoding: .jpeg(compressionQuality: 85)
+                            )
+                        }
+                    }
                     UploadSection(viewStore: viewStore)
                 }
                 .popover(
@@ -52,37 +75,6 @@ struct EntryComposeView: View {
                 .disabled(!viewStore.uploadButtonEnabled)
                 viewStore.uploadMessage.map {
                     Text($0)
-                }
-            }
-        }
-    }
-
-    private struct ButtonSection: View {
-        let viewStore: ViewStore<EntryComposeState, EntryComposeAction>
-
-        var body: some View {
-            Section {
-                Button("Add paragraph") {
-                    viewStore.send(.addParagraph)
-                }
-                Button("Add Headline") {
-                    viewStore.send(.addHeadline)
-                }
-                Button("Add Link") {
-                    viewStore.send(.addLink)
-                }
-                Button("Add Image") {
-                    viewStore.send(.showsImagePicker(true))
-                }.sheet(
-                    isPresented: viewStore.binding(get: { $0.showsImagePicker},
-                                                   send: EntryComposeAction.showsImagePicker)
-                ) {
-                    ImagePicker(
-                        data: viewStore.binding(get: { $0.pickedImage },
-                                                send: EntryComposeAction.imageSelectionResponse
-                        ),
-                        encoding: .jpeg(compressionQuality: 85)
-                    )
                 }
             }
         }

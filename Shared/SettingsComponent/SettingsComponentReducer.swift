@@ -31,8 +31,8 @@ let settingsComponentReducer = Reducer<SettingsComponentState,
             return .none
         }
 
-        env.secretsStore.accessToken = state.accessToken
-        env.secretsStore.repoName = state.repoName
+        env.secretsStore.contentLocation = .github(repo: state.repoName,
+                                                   accessToken: state.accessToken)
 
         return Effect(value: SettingsComponentAction.dismiss)
     case .dismiss:
