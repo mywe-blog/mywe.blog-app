@@ -7,7 +7,7 @@ let entryComposeReducer = Reducer<EntryComposeState, EntryComposeAction, EntryCo
                                          action: /EntryComposeAction.composeAction,
                                          environment: { env in
                                             EntryComposeComponentEnviornment(
-                                                service: env.service,
+                                                client: env.client,
                                                 secretsStore: env.secretsStore
                                             )
                                          }),
@@ -68,7 +68,7 @@ let entryComposeReducer = Reducer<EntryComposeState, EntryComposeAction, EntryCo
             state.componentStates.move(fromOffsets: items, toOffset: position)
             return .none
         case .uploadPost:
-            guard let location = enviornment.secretsStore.contentLocation else {
+            guard let location = enviornment.secretsStore.contentLocation(for: state.blogConfig.serviceIdentifier) else {
                 state.uploadMessage = "Not logged in"
                 state.uploadButtonEnabled = false
 
@@ -86,8 +86,9 @@ let entryComposeReducer = Reducer<EntryComposeState, EntryComposeAction, EntryCo
                 postfolder: state.date.iso8601withFractionalSeconds,
                 content: content)
 
-            let upload: Future<Empty, Error> = enviornment
-                .service
+            let service = MyWeBlogService(baseURL: URL(string: state.blogConfig.urlString)!,
+                                          client: enviornment.client)
+            let upload: Future<Empty, Error> = service
                 .perform(endpoint: .createEntry(postContent))
             return upload
                 .catchToEffect()
@@ -114,13 +115,14 @@ let entryComposeReducer = Reducer<EntryComposeState, EntryComposeAction, EntryCo
         case .uploadImage(let position):
             let position = position
             var imageState = state.componentStates[position]
-            guard let location = enviornment.secretsStore.contentLocation,
+            guard let location = enviornment.secretsStore.contentLocation(for: state.blogConfig.serviceIdentifier),
                   case .uploadingImage(let data) = imageState.componentType else {
                 return .none
             }
 
-            let upload: Future<ImageUploadContent, Error> = enviornment
-                .service
+            let service = MyWeBlogService(baseURL: URL(string: state.blogConfig.urlString)!,
+                                          client: enviornment.client)
+            let upload: Future<ImageUploadContent, Error> = service
                 .perform(endpoint: .uploadImage(contentLocation: location,
                                                 imageData: data,
                                                 postfolder: state.date.iso8601withFractionalSeconds))

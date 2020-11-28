@@ -8,69 +8,59 @@ struct SecretsStore {
         static let localPath = "localPath"
     }
 
-    private let keychain: Keychain
+    func contentLocation(for serviceIdentifier: String) -> ContentLocation? {
+        let keychain = Keychain(service: "blog.mywe.secrets-\(serviceIdentifier)")
 
-    init(
-        serviceIdentifier: String
-    ) {
-        self.keychain = Keychain(service: "blog.mywe.secrets-\(serviceIdentifier)")
+        if let repoName = keychain[string: Keys.repoName],
+           let accessToken = keychain[string: Keys.accessToken] {
+            return .github(repo: repoName, accessToken: accessToken)
+        }
+
+        return nil
     }
 
-    var contentLocation: ContentLocation? {
-        get {
-            if let localPath = localPath {
-                return .local(path: localPath)
-            }
+    func setContentLocation(_ contentLocation: ContentLocation?,
+                            for serviceIdentifier: String) {
+        let keychain = Keychain(service: "blog.mywe.secrets-\(serviceIdentifier)")
 
-            if let repoName = repoName,
-               let accessToken = accessToken {
-                return .github(repo: repoName, accessToken: accessToken)
-            }
-
-            return nil
-        }
-        set {
-            switch newValue {
-            case .local(let path):
-                self.localPath = path
-                self.repoName = nil
-                self.accessToken = nil
-            case .github(let repo, let accessToken):
-                self.repoName = repo
-                self.accessToken = accessToken
-                self.localPath = nil
-            case .none:
-                self.repoName = nil
-                self.accessToken = nil
-                self.localPath = nil
-            }
+        switch contentLocation {
+        case .local(let path):
+            keychain[string: Keys.localPath] = path
+            keychain[string: Keys.repoName] = nil
+            keychain[string: Keys.accessToken] = nil
+        case .github(let repo, let accessToken):
+            keychain[string: Keys.repoName] = repo
+            keychain[string: Keys.accessToken] = accessToken
+            keychain[string: Keys.localPath] = nil
+        case .none:
+            keychain[string: Keys.repoName] = nil
+            keychain[string: Keys.accessToken] = nil
+            keychain[string: Keys.localPath] = nil
         }
     }
 
-    private var repoName: String? {
-        get {
-            keychain[string: Keys.repoName]
+    func settingsComponentState(from config: BlogConfiguration) -> SettingsComponentState {
+        switch contentLocation(for: config.serviceIdentifier) {
+        case .github(let repo, let token):
+            return SettingsComponentState(
+                blogConfig: config,
+                accessToken: token,
+                repoName: repo
+            )
+        case .local(let path):
+            return SettingsComponentState(
+                blogConfig: config,
+                accessToken: "",
+                repoName: ""
+            )
+        case .none:
+            return SettingsComponentState(
+                blogConfig: config,
+                accessToken: "",
+                repoName: ""
+            )
         }
-        set {
-            keychain[string: Keys.repoName] = newValue
-        }
-    }
 
-    private var accessToken: String? {
-        get {
-            keychain[string: Keys.accessToken]
-        }
-        set {
-            keychain[string: Keys.accessToken] = newValue
-        }
-    }
 
-    private var localPath: String? {
-        get {
-            keychain[string: Keys.localPath]
-        }
-        set {
-            keychain[string: Keys.localPath] = newValue
-        }
     }
 }

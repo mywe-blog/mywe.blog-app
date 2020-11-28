@@ -31,8 +31,9 @@ let settingsComponentReducer = Reducer<SettingsComponentState,
             return .none
         }
 
-        env.secretsStore.contentLocation = .github(repo: state.repoName,
-                                                   accessToken: state.accessToken)
+        env.secretsStore.setContentLocation(.github(repo: state.repoName,
+                                                    accessToken: state.accessToken),
+                                            for: state.blogConfig.serviceIdentifier)
 
         return Effect(value: SettingsComponentAction.dismiss)
     case .dismiss:

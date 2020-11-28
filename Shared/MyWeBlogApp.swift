@@ -14,10 +14,14 @@ struct MyWeBlogApp: App {
                                       urlString: "https://myweblog-api.herokuapp.com")
 
         let state = BlogSelectorState(allBlogs: [blog1])
+        let secretStore = SecretsStore()
+        let queue = DispatchQueue.main.eraseToAnyScheduler()
 
         let store1 = Store(initialState: state,
                            reducer: blogSelectorReducer.debug(),
-                           environment: BlogSelectorEnviornment())
+                           environment: BlogSelectorEnviornment(mainQueue: queue,
+                                                                client: URLSession.shared,
+                                                                secretsStore: secretStore))
 
         return BlogSelectorView(store: store1)
     }

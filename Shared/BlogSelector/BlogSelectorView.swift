@@ -11,6 +11,9 @@ struct BlogSelectorState: Equatable {
 }
 
 struct BlogSelectorEnviornment {
+    var mainQueue: AnySchedulerOf<DispatchQueue>
+    let client: Client
+    let secretsStore: SecretsStore
 }
 
 enum BlogSelectorAction {
@@ -28,39 +31,15 @@ let blogSelectorReducer = Reducer<BlogSelectorState, BlogSelectorAction, BlogSel
         case .selectBlog(let blog):
             let queue = DispatchQueue.main.eraseToAnyScheduler()
 
-            let service = MyWeBlogService(baseURL: URL(string: "https://myweblog-api.herokuapp.com")!,
-                                          client: URLSession.shared)
-
-            let secretsStore = SecretsStore(serviceIdentifier: "test-app")
-            let enviornment = EntryComposeEnviornment(mainQueue: queue,
-                                                      service: service,
-                                                      secretsStore: secretsStore)
-
             let accessToken: String?
             let repoName: String?
             let contentPath: String?
 
-            switch secretsStore.contentLocation {
-            case .github(let repo, let token):
-                accessToken = token
-                repoName = repo
-            case .local(let path):
-                accessToken = nil
-                repoName = nil
-                contentPath = path
-            case .none:
-                accessToken = nil
-                repoName = nil
-                contentPath = nil
-            }
-
-            let settingsState = SettingsComponentState(
-                accessToken: accessToken ?? "",
-                repoName: repoName ?? ""
-            )
+            let settingsState = enviornment.secretsStore.settingsComponentState(from: blog)
 
             state.navigationActive = true
-            state.composeComponentState = EntryComposeState(settingsState: settingsState)
+            state.composeComponentState = EntryComposeState(blogConfig: blog,
+                                                            settingsState: settingsState)
 
             return .none
         case .entryComposeAction(let action):
@@ -70,32 +49,8 @@ let blogSelectorReducer = Reducer<BlogSelectorState, BlogSelectorAction, BlogSel
             state.navigationActive = value
 
             return .none
-        case .showSettings(let configuration):
-            let secretsStore = SecretsStore(serviceIdentifier: "test-app")
-
-            let accessToken: String?
-            let repoName: String?
-            let contentPath: String?
-
-            switch secretsStore.contentLocation {
-            case .github(let repo, let token):
-                accessToken = token
-                repoName = repo
-            case .local(let path):
-                accessToken = nil
-                repoName = nil
-                contentPath = path
-            case .none:
-                accessToken = nil
-                repoName = nil
-                contentPath = nil
-            }
-
-            let settingsState = SettingsComponentState(
-                accessToken: accessToken ?? "",
-                repoName: repoName ?? ""
-            )
-
+        case .showSettings(let blog):
+            let settingsState = enviornment.secretsStore.settingsComponentState(from: blog)
             state.settingsState = settingsState
             state.showsSettings = true
 
@@ -118,18 +73,14 @@ let blogSelectorReducer = Reducer<BlogSelectorState, BlogSelectorAction, BlogSel
     entryComposeReducer.pullback(state: \BlogSelectorState.composeComponentState,
                                  action: /BlogSelectorAction.entryComposeAction,
                                  environment: { env in
-                                    let queue = DispatchQueue.main.eraseToAnyScheduler()
-                                    let service = MyWeBlogService(baseURL: URL(string: "https://myweblog-api.herokuapp.com")!,
-                                                                          client: URLSession.shared)
-                                    let secrets = SecretsStore(serviceIdentifier: "test-app")
-                                    return EntryComposeEnviornment(mainQueue: queue,
-                                                                   service: service,
-                                                                   secretsStore: secrets)
+                                    return EntryComposeEnviornment(mainQueue: env.mainQueue,
+                                                                   client: env.client,
+                                                                   secretsStore: env.secretsStore)
                                  }),
     settingsComponentReducer.pullback(state: \BlogSelectorState.settingsState,
                                       action: /BlogSelectorAction.settingsAction,
                                       environment: { env in
-                                        return SettingsComponentEnviornment(secretsStore: SecretsStore(serviceIdentifier: "test-app"))
+                                        return SettingsComponentEnviornment(secretsStore: env.secretsStore)
                                       })
 )
 

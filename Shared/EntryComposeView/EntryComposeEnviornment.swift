@@ -4,6 +4,6 @@ import ComposableArchitecture
 struct EntryComposeEnviornment {
     var mainQueue: AnySchedulerOf<DispatchQueue>
 
-    let service: MyWeBlogService
+    let client: Client
     let secretsStore: SecretsStore
 }
