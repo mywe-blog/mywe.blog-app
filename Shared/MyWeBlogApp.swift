@@ -9,44 +9,16 @@ struct MyWeBlogApp: App {
         }
     }
 
-    var entryComposeView: EntryComposeView {
-        let queue = DispatchQueue.main.eraseToAnyScheduler()
+    var entryComposeView: BlogSelectorView {
+        let blog1 = BlogConfiguration(serviceIdentifier: "test-app",
+                                      urlString: "https://myweblog-api.herokuapp.com")
 
-        let service = MyWeBlogService(baseURL: URL(string: "https://myweblog-api.herokuapp.com")!,
-                                      client: URLSession.shared)
+        let state = BlogSelectorState(allBlogs: [blog1])
 
-        let secretsStore = SecretsStore()
-        let enviornment = EntryComposeEnviornment(mainQueue: queue,
-                                                  service: service,
-                                                  secretsStore: secretsStore)
+        let store1 = Store(initialState: state,
+                           reducer: blogSelectorReducer.debug(),
+                           environment: BlogSelectorEnviornment())
 
-        let accessToken: String?
-        let repoName: String?
-        let contentPath: String?
-
-        switch secretsStore.contentLocation {
-        case .github(let repo, let token):
-            accessToken = token
-            repoName = repo
-        case .local(let path):
-            accessToken = nil
-            repoName = nil
-            contentPath = path
-        case .none:
-            accessToken = nil
-            repoName = nil
-            contentPath = nil
-        }
-
-        let settingsState = SettingsComponentState(
-            accessToken: accessToken ?? "",
-            repoName: repoName ?? ""
-        )
-
-        let store = Store(initialState: EntryComposeState(settingsState: settingsState),
-                          reducer: entryComposeReducer.debug(),
-                          environment: enviornment)
-
-        return EntryComposeView(store: store)
+        return BlogSelectorView(store: store1)
     }
 }

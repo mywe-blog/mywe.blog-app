@@ -28,6 +28,8 @@
 		C580C5E2252846570087C3E6 /* SecretsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C580C5E1252846570087C3E6 /* SecretsStore.swift */; };
 		C580C5E3252846570087C3E6 /* SecretsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C580C5E1252846570087C3E6 /* SecretsStore.swift */; };
 		C581D7B12517726A0079F9C3 /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = C581D7B02517726A0079F9C3 /* SwiftUIX */; };
+		C58A592A256F7F9600A9B31A /* BlogConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58A5929256F7F9600A9B31A /* BlogConfiguration.swift */; };
+		C58A592B256F7F9600A9B31A /* BlogConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58A5929256F7F9600A9B31A /* BlogConfiguration.swift */; };
 		C5C23F6F252858D9002DD836 /* EntryComposeComponentReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C23F6E252858D9002DD836 /* EntryComposeComponentReducer.swift */; };
 		C5C23F7325285940002DD836 /* EntryComposeComponentEnviornment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C23F7225285940002DD836 /* EntryComposeComponentEnviornment.swift */; };
 		C5C23F7725285974002DD836 /* EntryComposeComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C23F7625285974002DD836 /* EntryComposeComponentView.swift */; };
@@ -59,6 +61,8 @@
 		C5E0E7C22560F04B003365F2 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5375C462529C23600EA2260 /* Date+Extension.swift */; };
 		C5E0E7C82560F4DE003365F2 /* EntryComposeView.mac.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E0E7C72560F4DE003365F2 /* EntryComposeView.mac.swift */; };
 		C5E0E7CC2560F515003365F2 /* SettingsComponentView.mac.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E0E7CB2560F515003365F2 /* SettingsComponentView.mac.swift */; };
+		C5F2F4862570BD320042B2A2 /* BlogSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F2F4852570BD320042B2A2 /* BlogSelectorView.swift */; };
+		C5F2F4872570BD320042B2A2 /* BlogSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F2F4852570BD320042B2A2 /* BlogSelectorView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +80,7 @@
 		C5697AD32520535600480F02 /* EntryComposeView.ios.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryComposeView.ios.swift; sourceTree = "<group>"; };
 		C5697AD72520703400480F02 /* EntryComposeComponentAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryComposeComponentAction.swift; sourceTree = "<group>"; };
 		C580C5E1252846570087C3E6 /* SecretsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretsStore.swift; sourceTree = "<group>"; };
+		C58A5929256F7F9600A9B31A /* BlogConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogConfiguration.swift; sourceTree = "<group>"; };
 		C5C23F6E252858D9002DD836 /* EntryComposeComponentReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryComposeComponentReducer.swift; sourceTree = "<group>"; };
 		C5C23F7225285940002DD836 /* EntryComposeComponentEnviornment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryComposeComponentEnviornment.swift; sourceTree = "<group>"; };
 		C5C23F7625285974002DD836 /* EntryComposeComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryComposeComponentView.swift; sourceTree = "<group>"; };
@@ -91,6 +96,7 @@
 		C5CBBDEA25171D960070B8D1 /* MyWeBlogService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWeBlogService.swift; sourceTree = "<group>"; };
 		C5E0E7C72560F4DE003365F2 /* EntryComposeView.mac.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryComposeView.mac.swift; sourceTree = "<group>"; };
 		C5E0E7CB2560F515003365F2 /* SettingsComponentView.mac.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsComponentView.mac.swift; sourceTree = "<group>"; };
+		C5F2F4852570BD320042B2A2 /* BlogSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogSelectorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +185,7 @@
 		C5CBBDBF25171A790070B8D1 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				C5F2F4842570BCFE0042B2A2 /* BlogSelector */,
 				C5C23F7A252859B4002DD836 /* SettingsComponent */,
 				C5697AB925204DF400480F02 /* EntryComposeView */,
 				C5CBBDE925171D840070B8D1 /* Chasm-Service */,
@@ -222,6 +229,7 @@
 			isa = PBXGroup;
 			children = (
 				C5CBBDE425171B070070B8D1 /* Models.swift */,
+				C58A5929256F7F9600A9B31A /* BlogConfiguration.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -232,6 +240,14 @@
 				C5CBBDEA25171D960070B8D1 /* MyWeBlogService.swift */,
 			);
 			path = "Chasm-Service";
+			sourceTree = "<group>";
+		};
+		C5F2F4842570BCFE0042B2A2 /* BlogSelector */ = {
+			isa = PBXGroup;
+			children = (
+				C5F2F4852570BD320042B2A2 /* BlogSelectorView.swift */,
+			);
+			path = BlogSelector;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -359,6 +375,7 @@
 				C5CBBDE525171B070070B8D1 /* Models.swift in Sources */,
 				C5375C312529987E00EA2260 /* SettingsComponentEnviornment.swift in Sources */,
 				C5697AC22520504900480F02 /* EntryComposeComponentState.swift in Sources */,
+				C58A592A256F7F9600A9B31A /* BlogConfiguration.swift in Sources */,
 				C5C23F7325285940002DD836 /* EntryComposeComponentEnviornment.swift in Sources */,
 				C5375C472529C23600EA2260 /* Date+Extension.swift in Sources */,
 				C5375C372529989A00EA2260 /* SettingsComponentAction.swift in Sources */,
@@ -368,6 +385,7 @@
 				C5697ACC2520521100480F02 /* EntryComposeEnviornment.swift in Sources */,
 				C5CBBDD325171A7A0070B8D1 /* MyWeBlogApp.swift in Sources */,
 				C5375C2B2529984F00EA2260 /* SettingsComponentState.swift in Sources */,
+				C5F2F4862570BD320042B2A2 /* BlogSelectorView.swift in Sources */,
 				C5697ABB25204E2400480F02 /* EntrtyComposeState.swift in Sources */,
 				C5375C432529994800EA2260 /* MultilineTextEditor.swift in Sources */,
 			);
@@ -387,6 +405,7 @@
 				C5CBBDE625171B070070B8D1 /* Models.swift in Sources */,
 				C5E0E7B72560F008003365F2 /* SettingsComponentReducer.swift in Sources */,
 				C5E0E7B12560F004003365F2 /* EntryComposeComponentAction.swift in Sources */,
+				C58A592B256F7F9600A9B31A /* BlogConfiguration.swift in Sources */,
 				C5E0E7C22560F04B003365F2 /* Date+Extension.swift in Sources */,
 				C5E0E7AE2560F004003365F2 /* EntryComposeComponentReducer.swift in Sources */,
 				C5E0E7A92560F001003365F2 /* EntryComposeReducer.swift in Sources */,
@@ -396,6 +415,7 @@
 				C5E0E7B02560F004003365F2 /* EntryComposeComponentState.swift in Sources */,
 				C5E0E7AD2560F004003365F2 /* EntryComposeComponentView.swift in Sources */,
 				C5E0E7B82560F008003365F2 /* SettingsComponentState.swift in Sources */,
+				C5F2F4872570BD320042B2A2 /* BlogSelectorView.swift in Sources */,
 				C5CBBDD425171A7A0070B8D1 /* MyWeBlogApp.swift in Sources */,
 				C5E0E7BF2560F046003365F2 /* MultilineTextEditor.swift in Sources */,
 			);

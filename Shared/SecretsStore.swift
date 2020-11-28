@@ -11,9 +11,9 @@ struct SecretsStore {
     private let keychain: Keychain
 
     init(
-        keychain: Keychain = Keychain(service: "blog.mywe.secrets")
+        serviceIdentifier: String
     ) {
-        self.keychain = keychain
+        self.keychain = Keychain(service: "blog.mywe.secrets-\(serviceIdentifier)")
     }
 
     var contentLocation: ContentLocation? {

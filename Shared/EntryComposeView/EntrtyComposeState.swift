@@ -5,7 +5,7 @@ struct EntryComposeState: Equatable {
     var title: String = ""
     var date = Date()
     var componentStates: [EntryComposeComponentState] = []
-    var settingsState: SettingsComponentState
+    var settingsState = SettingsComponentState()
 
     var editingState: EntryComposeComponentState?
 
