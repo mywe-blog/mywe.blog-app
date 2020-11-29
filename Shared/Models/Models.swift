@@ -101,7 +101,7 @@ public enum ContentPart: Codable, Identifiable {
     }
 }
 
-public enum ContentLocation: Codable, Identifiable {
+public enum ContentLocation: Codable, Identifiable, Equatable {
     public var id: UUID {
         return UUID()
     }

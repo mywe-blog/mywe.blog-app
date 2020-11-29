@@ -10,10 +10,16 @@ struct MyWeBlogApp: App {
     }
 
     var entryComposeView: BlogSelectorView {
+        SecretsStore().setContentLocation(.local(path: "/Users/martinhartl/Desktop/test"),
+                                                       for: "local")
+
         let blog1 = BlogConfiguration(serviceIdentifier: "test-app",
                                       urlString: "https://myweblog-api.herokuapp.com")
 
-        let state = BlogSelectorState(allBlogs: [blog1])
+        let blog2 = BlogConfiguration(serviceIdentifier: "local",
+                                      urlString: "http://0.0.0.0:3000")
+
+        let state = BlogSelectorState(allBlogs: [blog1, blog2])
         let secretStore = SecretsStore()
         let queue = DispatchQueue.main.eraseToAnyScheduler()
 

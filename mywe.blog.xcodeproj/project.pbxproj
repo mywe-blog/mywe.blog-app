@@ -24,12 +24,20 @@
 		C5697AD02520524800480F02 /* EntryComposeReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5697ACF2520524800480F02 /* EntryComposeReducer.swift */; };
 		C5697AD42520535600480F02 /* EntryComposeView.ios.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5697AD32520535600480F02 /* EntryComposeView.ios.swift */; };
 		C5697AD82520703400480F02 /* EntryComposeComponentAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5697AD72520703400480F02 /* EntryComposeComponentAction.swift */; };
+		C572AF4325727615009D4756 /* BlogSelectorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C572AF4225727615009D4756 /* BlogSelectorState.swift */; };
+		C572AF4425727615009D4756 /* BlogSelectorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C572AF4225727615009D4756 /* BlogSelectorState.swift */; };
+		C572AF4825727637009D4756 /* BlogSelectorReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C572AF4725727637009D4756 /* BlogSelectorReducer.swift */; };
+		C572AF4925727637009D4756 /* BlogSelectorReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C572AF4725727637009D4756 /* BlogSelectorReducer.swift */; };
 		C580C5DE252846370087C3E6 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = C580C5DD252846370087C3E6 /* KeychainAccess */; };
 		C580C5E2252846570087C3E6 /* SecretsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C580C5E1252846570087C3E6 /* SecretsStore.swift */; };
 		C580C5E3252846570087C3E6 /* SecretsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C580C5E1252846570087C3E6 /* SecretsStore.swift */; };
 		C581D7B12517726A0079F9C3 /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = C581D7B02517726A0079F9C3 /* SwiftUIX */; };
 		C58A592A256F7F9600A9B31A /* BlogConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58A5929256F7F9600A9B31A /* BlogConfiguration.swift */; };
 		C58A592B256F7F9600A9B31A /* BlogConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58A5929256F7F9600A9B31A /* BlogConfiguration.swift */; };
+		C5B8D88E2572758C00638C55 /* BlogSelectorAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B8D88D2572758C00638C55 /* BlogSelectorAction.swift */; };
+		C5B8D88F2572758C00638C55 /* BlogSelectorAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B8D88D2572758C00638C55 /* BlogSelectorAction.swift */; };
+		C5B8D893257275C700638C55 /* BlogSelectorEnviornment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B8D892257275C700638C55 /* BlogSelectorEnviornment.swift */; };
+		C5B8D894257275C700638C55 /* BlogSelectorEnviornment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B8D892257275C700638C55 /* BlogSelectorEnviornment.swift */; };
 		C5C23F6F252858D9002DD836 /* EntryComposeComponentReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C23F6E252858D9002DD836 /* EntryComposeComponentReducer.swift */; };
 		C5C23F7325285940002DD836 /* EntryComposeComponentEnviornment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C23F7225285940002DD836 /* EntryComposeComponentEnviornment.swift */; };
 		C5C23F7725285974002DD836 /* EntryComposeComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C23F7625285974002DD836 /* EntryComposeComponentView.swift */; };
@@ -79,8 +87,12 @@
 		C5697ACF2520524800480F02 /* EntryComposeReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryComposeReducer.swift; sourceTree = "<group>"; };
 		C5697AD32520535600480F02 /* EntryComposeView.ios.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryComposeView.ios.swift; sourceTree = "<group>"; };
 		C5697AD72520703400480F02 /* EntryComposeComponentAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryComposeComponentAction.swift; sourceTree = "<group>"; };
+		C572AF4225727615009D4756 /* BlogSelectorState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogSelectorState.swift; sourceTree = "<group>"; };
+		C572AF4725727637009D4756 /* BlogSelectorReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogSelectorReducer.swift; sourceTree = "<group>"; };
 		C580C5E1252846570087C3E6 /* SecretsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretsStore.swift; sourceTree = "<group>"; };
 		C58A5929256F7F9600A9B31A /* BlogConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogConfiguration.swift; sourceTree = "<group>"; };
+		C5B8D88D2572758C00638C55 /* BlogSelectorAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogSelectorAction.swift; sourceTree = "<group>"; };
+		C5B8D892257275C700638C55 /* BlogSelectorEnviornment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogSelectorEnviornment.swift; sourceTree = "<group>"; };
 		C5C23F6E252858D9002DD836 /* EntryComposeComponentReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryComposeComponentReducer.swift; sourceTree = "<group>"; };
 		C5C23F7225285940002DD836 /* EntryComposeComponentEnviornment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryComposeComponentEnviornment.swift; sourceTree = "<group>"; };
 		C5C23F7625285974002DD836 /* EntryComposeComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryComposeComponentView.swift; sourceTree = "<group>"; };
@@ -246,6 +258,10 @@
 			isa = PBXGroup;
 			children = (
 				C5F2F4852570BD320042B2A2 /* BlogSelectorView.swift */,
+				C5B8D88D2572758C00638C55 /* BlogSelectorAction.swift */,
+				C5B8D892257275C700638C55 /* BlogSelectorEnviornment.swift */,
+				C572AF4225727615009D4756 /* BlogSelectorState.swift */,
+				C572AF4725727637009D4756 /* BlogSelectorReducer.swift */,
 			);
 			path = BlogSelector;
 			sourceTree = "<group>";
@@ -365,6 +381,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5B8D893257275C700638C55 /* BlogSelectorEnviornment.swift in Sources */,
 				C5697AD02520524800480F02 /* EntryComposeReducer.swift in Sources */,
 				C5C23F6F252858D9002DD836 /* EntryComposeComponentReducer.swift in Sources */,
 				C5CBBDEB25171D960070B8D1 /* MyWeBlogService.swift in Sources */,
@@ -372,6 +389,7 @@
 				C5697AD82520703400480F02 /* EntryComposeComponentAction.swift in Sources */,
 				C5C23F7C252859D0002DD836 /* SettingsComponentView.ios.swift in Sources */,
 				C5697AD42520535600480F02 /* EntryComposeView.ios.swift in Sources */,
+				C572AF4325727615009D4756 /* BlogSelectorState.swift in Sources */,
 				C5CBBDE525171B070070B8D1 /* Models.swift in Sources */,
 				C5375C312529987E00EA2260 /* SettingsComponentEnviornment.swift in Sources */,
 				C5697AC22520504900480F02 /* EntryComposeComponentState.swift in Sources */,
@@ -387,6 +405,8 @@
 				C5375C2B2529984F00EA2260 /* SettingsComponentState.swift in Sources */,
 				C5F2F4862570BD320042B2A2 /* BlogSelectorView.swift in Sources */,
 				C5697ABB25204E2400480F02 /* EntrtyComposeState.swift in Sources */,
+				C572AF4825727637009D4756 /* BlogSelectorReducer.swift in Sources */,
+				C5B8D88E2572758C00638C55 /* BlogSelectorAction.swift in Sources */,
 				C5375C432529994800EA2260 /* MultilineTextEditor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -395,6 +415,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5B8D894257275C700638C55 /* BlogSelectorEnviornment.swift in Sources */,
 				C5CBBDEC25171D960070B8D1 /* MyWeBlogService.swift in Sources */,
 				C5E0E7A72560F001003365F2 /* EntryComposeAction.swift in Sources */,
 				C5E0E7C82560F4DE003365F2 /* EntryComposeView.mac.swift in Sources */,
@@ -402,6 +423,7 @@
 				C5E0E7A82560F001003365F2 /* EntrtyComposeState.swift in Sources */,
 				C5E0E7AF2560F004003365F2 /* EntryComposeComponentEnviornment.swift in Sources */,
 				C5E0E7B62560F008003365F2 /* SettingsComponentAction.swift in Sources */,
+				C572AF4425727615009D4756 /* BlogSelectorState.swift in Sources */,
 				C5CBBDE625171B070070B8D1 /* Models.swift in Sources */,
 				C5E0E7B72560F008003365F2 /* SettingsComponentReducer.swift in Sources */,
 				C5E0E7B12560F004003365F2 /* EntryComposeComponentAction.swift in Sources */,
@@ -417,6 +439,8 @@
 				C5E0E7B82560F008003365F2 /* SettingsComponentState.swift in Sources */,
 				C5F2F4872570BD320042B2A2 /* BlogSelectorView.swift in Sources */,
 				C5CBBDD425171A7A0070B8D1 /* MyWeBlogApp.swift in Sources */,
+				C572AF4925727637009D4756 /* BlogSelectorReducer.swift in Sources */,
+				C5B8D88F2572758C00638C55 /* BlogSelectorAction.swift in Sources */,
 				C5E0E7BF2560F046003365F2 /* MultilineTextEditor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

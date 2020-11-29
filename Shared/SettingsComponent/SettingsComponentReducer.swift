@@ -5,6 +5,10 @@ let settingsComponentReducer = Reducer<SettingsComponentState,
                                        SettingsComponentAction,
                                        SettingsComponentEnviornment> { state, action, env in
     switch action {
+    case .setLocation(let index):
+        state.locationIndex = index
+
+        return .none
     case .setAccessToken(let string):
         if state.repoName.isEmpty && string.isEmpty {
             state.showsEmptyRequiredFieldWarning = true
@@ -25,15 +29,35 @@ let settingsComponentReducer = Reducer<SettingsComponentState,
         state.repoName = string
 
         return .none
-    case .save:
-        guard !state.accessToken.isEmpty && !state.repoName.isEmpty else {
-            state.showsEmptyRequiredFieldWarning = true
-            return .none
-        }
+    case .setLocalPath(let path):
+        state.localPath = path
 
-        env.secretsStore.setContentLocation(.github(repo: state.repoName,
-                                                    accessToken: state.accessToken),
-                                            for: state.blogConfig.serviceIdentifier)
+        return .none
+    case .save:
+        let type = SettingsComponentState.Location.allCases[state.locationIndex]
+
+        switch type {
+        case .github:
+            guard !state.accessToken.isEmpty && !state.repoName.isEmpty else {
+                state.showsEmptyRequiredFieldWarning = true
+                return .none
+            }
+
+            state.showsEmptyRequiredFieldWarning = true
+            env.secretsStore.setContentLocation(.github(repo: state.repoName,
+                                                        accessToken: state.accessToken),
+                                                for: state.blogConfig.serviceIdentifier)
+        case .local:
+            guard !state.localPath.isEmpty else {
+                state.showsEmptyRequiredFieldWarning = true
+                return .none
+            }
+
+            state.showsEmptyRequiredFieldWarning = false
+            env.secretsStore.setContentLocation(.local(path: state.localPath),
+                                                for: state.blogConfig.serviceIdentifier)
+
+        }
 
         return Effect(value: SettingsComponentAction.dismiss)
     case .dismiss:

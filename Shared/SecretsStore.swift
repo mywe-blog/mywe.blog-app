@@ -11,6 +11,10 @@ struct SecretsStore {
     func contentLocation(for serviceIdentifier: String) -> ContentLocation? {
         let keychain = Keychain(service: "blog.mywe.secrets-\(serviceIdentifier)")
 
+        if let path = keychain[string: Keys.localPath] {
+            return .local(path: path)
+        }
+
         if let repoName = keychain[string: Keys.repoName],
            let accessToken = keychain[string: Keys.accessToken] {
             return .github(repo: repoName, accessToken: accessToken)
@@ -44,12 +48,15 @@ struct SecretsStore {
         case .github(let repo, let token):
             return SettingsComponentState(
                 blogConfig: config,
+                locationIndex: SettingsComponentState.Location.allCases.firstIndex(of: .github) ?? 0,
                 accessToken: token,
                 repoName: repo
             )
         case .local(let path):
             return SettingsComponentState(
                 blogConfig: config,
+                locationIndex: SettingsComponentState.Location.allCases.firstIndex(of: .local) ?? 0,
+                localPath: path,
                 accessToken: "",
                 repoName: ""
             )
