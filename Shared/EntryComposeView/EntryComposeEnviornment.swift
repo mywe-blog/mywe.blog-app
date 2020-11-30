@@ -6,4 +6,5 @@ struct EntryComposeEnviornment {
 
     let client: Client
     let secretsStore: SecretsStore
+    let configStore: BlogConfigurationStore
 }

@@ -10,14 +10,24 @@ struct SettingsComponentView: View {
         WithViewStore(store) { viewStore in
             NavigationView {
                 List {
-                    Picker(
-                        selection: viewStore.binding(get: { $0.locationIndex }, send: SettingsComponentAction.setLocation),
-                        label: Text("Content Location")
-                    ) {
-                        ForEach(0..<SettingsComponentState.Location.allCases.count) { index in
-                            Text(SettingsComponentState.Location.allCases[index].rawValue).tag(index)
-                        }
-                    }.pickerStyle(SegmentedPickerStyle())
+                    Section {
+                        Picker(
+                            selection: viewStore.binding(get: { $0.locationIndex }, send: SettingsComponentAction.setLocation),
+                            label: Text("Content Location")
+                        ) {
+                            ForEach(0..<SettingsComponentState.Location.allCases.count) { index in
+                                Text(SettingsComponentState.Location.allCases[index].rawValue).tag(index)
+                            }
+                        }.pickerStyle(SegmentedPickerStyle())
+                        TextField(
+                            "https://myweblog-api.herokuapp.com",
+                            text: viewStore.binding(
+                                get: { $0.enteredServerPath },
+                                send: SettingsComponentAction.setEnteredServerPath)
+                        )
+                        .keyboardType(.URL)
+                        .autocapitalization(.none)
+                    }
                     Section {
                         if SettingsComponentState.Location.allCases[viewStore.locationIndex] == .github {
                             SecureField(

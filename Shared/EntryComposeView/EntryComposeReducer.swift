@@ -68,7 +68,7 @@ let entryComposeReducer = Reducer<EntryComposeState, EntryComposeAction, EntryCo
             state.componentStates.move(fromOffsets: items, toOffset: position)
             return .none
         case .uploadPost:
-            guard let location = enviornment.secretsStore.contentLocation(for: state.blogConfig.serviceIdentifier) else {
+            guard let location = enviornment.secretsStore.contentLocation(for: state.blogConfig) else {
                 state.uploadMessage = "Not logged in"
                 state.uploadButtonEnabled = false
 
@@ -115,7 +115,7 @@ let entryComposeReducer = Reducer<EntryComposeState, EntryComposeAction, EntryCo
         case .uploadImage(let position):
             let position = position
             var imageState = state.componentStates[position]
-            guard let location = enviornment.secretsStore.contentLocation(for: state.blogConfig.serviceIdentifier),
+            guard let location = enviornment.secretsStore.contentLocation(for: state.blogConfig),
                   case .uploadingImage(let data) = imageState.componentType else {
                 return .none
             }
@@ -161,7 +161,8 @@ let entryComposeReducer = Reducer<EntryComposeState, EntryComposeAction, EntryCo
     settingsComponentReducer.pullback(state: \EntryComposeState.settingsState,
                                       action: /EntryComposeAction.settingsAction,
                                       environment: { env in
-                                        return SettingsComponentEnviornment(secretsStore: env.secretsStore)
+                                        return SettingsComponentEnviornment(secretsStore: env.secretsStore,
+                                                                            configStore: env.configStore)
                                       })
     )
 

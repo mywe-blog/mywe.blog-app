@@ -8,8 +8,8 @@ struct SecretsStore {
         static let localPath = "localPath"
     }
 
-    func contentLocation(for serviceIdentifier: String) -> ContentLocation? {
-        let keychain = Keychain(service: "blog.mywe.secrets-\(serviceIdentifier)")
+    func contentLocation(for configuration: BlogConfiguration) -> ContentLocation? {
+        let keychain = Keychain(service: "blog.mywe.secrets-\(configuration.id.uuidString)")
 
         if let path = keychain[string: Keys.localPath] {
             return .local(path: path)
@@ -24,8 +24,8 @@ struct SecretsStore {
     }
 
     func setContentLocation(_ contentLocation: ContentLocation?,
-                            for serviceIdentifier: String) {
-        let keychain = Keychain(service: "blog.mywe.secrets-\(serviceIdentifier)")
+                            for configuration: BlogConfiguration) {
+        let keychain = Keychain(service: "blog.mywe.secrets-\(configuration.id.uuidString)")
 
         switch contentLocation {
         case .local(let path):
@@ -44,10 +44,11 @@ struct SecretsStore {
     }
 
     func settingsComponentState(from config: BlogConfiguration) -> SettingsComponentState {
-        switch contentLocation(for: config.serviceIdentifier) {
+        switch contentLocation(for: config) {
         case .github(let repo, let token):
             return SettingsComponentState(
                 blogConfig: config,
+                enteredServerPath: config.urlString,
                 locationIndex: SettingsComponentState.Location.allCases.firstIndex(of: .github) ?? 0,
                 accessToken: token,
                 repoName: repo
@@ -55,6 +56,7 @@ struct SecretsStore {
         case .local(let path):
             return SettingsComponentState(
                 blogConfig: config,
+                enteredServerPath: config.urlString,
                 locationIndex: SettingsComponentState.Location.allCases.firstIndex(of: .local) ?? 0,
                 localPath: path,
                 accessToken: "",
@@ -63,6 +65,7 @@ struct SecretsStore {
         case .none:
             return SettingsComponentState(
                 blogConfig: config,
+                enteredServerPath: config.urlString,
                 accessToken: "",
                 repoName: ""
             )

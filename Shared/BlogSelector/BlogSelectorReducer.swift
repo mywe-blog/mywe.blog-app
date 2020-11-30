@@ -51,11 +51,12 @@ let blogSelectorReducer = Reducer<BlogSelectorState, BlogSelectorAction, BlogSel
                                  environment: { env in
                                     return EntryComposeEnviornment(mainQueue: env.mainQueue,
                                                                    client: env.client,
-                                                                   secretsStore: env.secretsStore)
+                                                                   secretsStore: env.secretsStore,
+                                                                   configStore: env.configStore)
                                  }),
     settingsComponentReducer.pullback(state: \BlogSelectorState.settingsState,
                                       action: /BlogSelectorAction.settingsAction,
                                       environment: { env in
-                                        return SettingsComponentEnviornment(secretsStore: env.secretsStore)
+                                        return SettingsComponentEnviornment(secretsStore: env.secretsStore, configStore: env.configStore)
                                       })
 )

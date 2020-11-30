@@ -5,6 +5,10 @@ let settingsComponentReducer = Reducer<SettingsComponentState,
                                        SettingsComponentAction,
                                        SettingsComponentEnviornment> { state, action, env in
     switch action {
+    case .setEnteredServerPath(let path):
+        state.enteredServerPath = path
+
+        return .none
     case .setLocation(let index):
         state.locationIndex = index
 
@@ -46,7 +50,7 @@ let settingsComponentReducer = Reducer<SettingsComponentState,
             state.showsEmptyRequiredFieldWarning = true
             env.secretsStore.setContentLocation(.github(repo: state.repoName,
                                                         accessToken: state.accessToken),
-                                                for: state.blogConfig.serviceIdentifier)
+                                                for: state.blogConfig)
         case .local:
             guard !state.localPath.isEmpty else {
                 state.showsEmptyRequiredFieldWarning = true
@@ -55,10 +59,17 @@ let settingsComponentReducer = Reducer<SettingsComponentState,
 
             state.showsEmptyRequiredFieldWarning = false
             env.secretsStore.setContentLocation(.local(path: state.localPath),
-                                                for: state.blogConfig.serviceIdentifier)
+                                                for: state.blogConfig)
 
         }
 
+        var config = state.blogConfig
+        config.urlString = state.enteredServerPath
+        state.blogConfig = config
+
+        env.configStore.store(configuration: config)
+
+        
         return Effect(value: SettingsComponentAction.dismiss)
     case .dismiss:
         return .none

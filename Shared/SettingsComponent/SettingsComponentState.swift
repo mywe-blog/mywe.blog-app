@@ -7,6 +7,7 @@ struct SettingsComponentState: Equatable {
     }
 
     var blogConfig = BlogConfiguration(serviceIdentifier: "", urlString: "")
+    var enteredServerPath = "https://myweblog-api.herokuapp.com"
     var locationIndex = 0
     var localPath = ""
     var accessToken: String = ""

@@ -28,6 +28,8 @@
 		C572AF4425727615009D4756 /* BlogSelectorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C572AF4225727615009D4756 /* BlogSelectorState.swift */; };
 		C572AF4825727637009D4756 /* BlogSelectorReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C572AF4725727637009D4756 /* BlogSelectorReducer.swift */; };
 		C572AF4925727637009D4756 /* BlogSelectorReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C572AF4725727637009D4756 /* BlogSelectorReducer.swift */; };
+		C572AF4D25737A7B009D4756 /* BlogConfigurationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C572AF4C25737A7B009D4756 /* BlogConfigurationStore.swift */; };
+		C572AF4E25737A7B009D4756 /* BlogConfigurationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C572AF4C25737A7B009D4756 /* BlogConfigurationStore.swift */; };
 		C580C5DE252846370087C3E6 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = C580C5DD252846370087C3E6 /* KeychainAccess */; };
 		C580C5E2252846570087C3E6 /* SecretsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C580C5E1252846570087C3E6 /* SecretsStore.swift */; };
 		C580C5E3252846570087C3E6 /* SecretsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C580C5E1252846570087C3E6 /* SecretsStore.swift */; };
@@ -89,6 +91,7 @@
 		C5697AD72520703400480F02 /* EntryComposeComponentAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryComposeComponentAction.swift; sourceTree = "<group>"; };
 		C572AF4225727615009D4756 /* BlogSelectorState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogSelectorState.swift; sourceTree = "<group>"; };
 		C572AF4725727637009D4756 /* BlogSelectorReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogSelectorReducer.swift; sourceTree = "<group>"; };
+		C572AF4C25737A7B009D4756 /* BlogConfigurationStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogConfigurationStore.swift; sourceTree = "<group>"; };
 		C580C5E1252846570087C3E6 /* SecretsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretsStore.swift; sourceTree = "<group>"; };
 		C58A5929256F7F9600A9B31A /* BlogConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogConfiguration.swift; sourceTree = "<group>"; };
 		C5B8D88D2572758C00638C55 /* BlogSelectorAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogSelectorAction.swift; sourceTree = "<group>"; };
@@ -205,6 +208,7 @@
 				C5CBBDC025171A790070B8D1 /* MyWeBlogApp.swift */,
 				C5CBBDC225171A7A0070B8D1 /* Assets.xcassets */,
 				C580C5E1252846570087C3E6 /* SecretsStore.swift */,
+				C572AF4C25737A7B009D4756 /* BlogConfigurationStore.swift */,
 				C5375C422529994800EA2260 /* MultilineTextEditor.swift */,
 				C5375C462529C23600EA2260 /* Date+Extension.swift */,
 			);
@@ -381,6 +385,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C572AF4D25737A7B009D4756 /* BlogConfigurationStore.swift in Sources */,
 				C5B8D893257275C700638C55 /* BlogSelectorEnviornment.swift in Sources */,
 				C5697AD02520524800480F02 /* EntryComposeReducer.swift in Sources */,
 				C5C23F6F252858D9002DD836 /* EntryComposeComponentReducer.swift in Sources */,
@@ -415,6 +420,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C572AF4E25737A7B009D4756 /* BlogConfigurationStore.swift in Sources */,
 				C5B8D894257275C700638C55 /* BlogSelectorEnviornment.swift in Sources */,
 				C5CBBDEC25171D960070B8D1 /* MyWeBlogService.swift in Sources */,
 				C5E0E7A72560F001003365F2 /* EntryComposeAction.swift in Sources */,

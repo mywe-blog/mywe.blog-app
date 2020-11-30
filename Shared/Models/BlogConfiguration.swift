@@ -4,6 +4,6 @@ import KeychainAccess
 struct BlogConfiguration: Codable, Equatable, Identifiable {
     var id = UUID()
 
-    let serviceIdentifier: String
-    let urlString: String
+    var serviceIdentifier: String
+    var urlString: String
 }
