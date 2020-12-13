@@ -30,6 +30,19 @@ struct BlogConfigurationStore {
         }
     }
 
+    func delete(configuration: BlogConfiguration) {
+        var configurations = allConfigurations
+
+        if let existingIndex = configurations.firstIndex(of: configuration) {
+            configurations.remove(at: existingIndex)
+        }
+
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(Configuration(all: configurations)) {
+            userDefaults.set(encoded, forKey: Keys.allConfigurations)
+        }
+    }
+
     var allConfigurations: [BlogConfiguration] {
         if let object = userDefaults.object(forKey: Keys.allConfigurations) as? Data {
             let decoder = JSONDecoder()

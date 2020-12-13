@@ -43,6 +43,7 @@ struct SecretsStore {
         }
     }
 
+    // TODO: move out
     func settingsComponentState(from config: BlogConfiguration) -> SettingsComponentState {
         switch contentLocation(for: config) {
         case .github(let repo, let token):
@@ -70,7 +71,5 @@ struct SecretsStore {
                 repoName: ""
             )
         }
-
-
     }
 }

@@ -1,16 +1,17 @@
 import Foundation
 import ComposableArchitecture
 
-struct EntryComposeState: Equatable {
-    var blogConfig: BlogConfiguration = BlogConfiguration(serviceIdentifier: "",
-                                                          urlString: "")
+struct EntryComposeState: Equatable, Identifiable {
+    var id: String {
+        return blogConfig.serviceIdentifier
+    }
+
+    var blogConfig: BlogConfiguration
 
     var title: String = ""
     var date = Date()
     var componentStates: [EntryComposeComponentState] = []
-    var settingsState = SettingsComponentState()
-
-    var editingState: EntryComposeComponentState?
+    var settingsState: SettingsComponentState
 
     var showsImagePicker = false
     var pickedImage: Data?

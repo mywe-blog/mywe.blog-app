@@ -1,10 +1,8 @@
 import Foundation
 
 enum BlogSelectorAction {
-    case selectBlog(BlogConfiguration)
-    case entryComposeAction(EntryComposeAction)
-    case setNavigationActive(Bool)
+    case entryComposeAction(Int, EntryComposeAction)
     case showSettings(BlogConfiguration)
-    case settingsAction(SettingsComponentAction)
     case setShowSettingsActive(Bool)
+    case delete(BlogConfiguration)
 }

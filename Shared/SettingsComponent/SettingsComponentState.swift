@@ -6,8 +6,9 @@ struct SettingsComponentState: Equatable {
         case local
     }
 
-    var blogConfig = BlogConfiguration(serviceIdentifier: "", urlString: "")
-    var enteredServerPath = "https://myweblog-api.herokuapp.com"
+    // TODO: Model state to match enum
+    var blogConfig: BlogConfiguration
+    var enteredServerPath: String
     var locationIndex = 0
     var localPath = ""
     var accessToken: String = ""

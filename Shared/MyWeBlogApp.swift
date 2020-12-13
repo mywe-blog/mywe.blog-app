@@ -15,9 +15,16 @@ struct MyWeBlogApp: App {
 //
 //        let blog2 = BlogConfiguration(serviceIdentifier: "local",
 //                                      urlString: "http://0.0.0.0:3000")
+//
+//        BlogConfigurationStore().store(configuration: blog1)
+//        BlogConfigurationStore().store(configuration: blog2)
 
-        let state = BlogSelectorState(allBlogs: BlogConfigurationStore().allConfigurations)
         let secretStore = SecretsStore()
+        var state = BlogSelectorState()
+        state.allComposeComponentStates = BlogConfigurationStore().allConfigurations.map {
+            let settingsState = secretStore.settingsComponentState(from: $0)
+            return EntryComposeState(blogConfig: $0, settingsState: settingsState)
+        }
         let queue = DispatchQueue.main.eraseToAnyScheduler()
 
         let store1 = Store(initialState: state,
