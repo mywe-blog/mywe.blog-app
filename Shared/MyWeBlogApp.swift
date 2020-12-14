@@ -23,7 +23,7 @@ struct MyWeBlogApp: App {
         var state = BlogSelectorState()
         state.allComposeComponentStates = BlogConfigurationStore().allConfigurations.map {
             let settingsState = secretStore.settingsComponentState(from: $0)
-            return EntryComposeState(blogConfig: $0, settingsState: settingsState)
+            return EntryComposeState(settingsState: settingsState)
         }
         let queue = DispatchQueue.main.eraseToAnyScheduler()
 

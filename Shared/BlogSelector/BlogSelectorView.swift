@@ -50,11 +50,11 @@ struct BlogSelectorItemView: View {
     var body: some View {
         WithViewStore(store) { viewStore in
             GroupBox(
-                label: Label(viewStore.blogConfig.serviceIdentifier,
+                label: Label(viewStore.settingsState.blogConfig.serviceIdentifier,
                              systemImage: "heart.fill")
                     .foregroundColor(.red)
             ) {
-                Text(viewStore.blogConfig.urlString)
+                Text(viewStore.settingsState.blogConfig.urlString)
             }
             .groupBoxStyle(DefaultGroupBoxStyle())
         }

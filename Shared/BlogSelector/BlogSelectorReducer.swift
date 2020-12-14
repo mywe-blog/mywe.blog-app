@@ -25,7 +25,7 @@ let blogSelectorReducer = Reducer<BlogSelectorState, BlogSelectorAction, BlogSel
                                                         for: config)
             enviornment.configStore.delete(configuration: config)
 
-            if let index = state.allComposeComponentStates.firstIndex(where: { $0.blogConfig.id == config.id }) {
+            if let index = state.allComposeComponentStates.firstIndex(where: { $0.settingsState.blogConfig.id == config.id }) {
                 state.allComposeComponentStates.remove(at: index)
             }
 

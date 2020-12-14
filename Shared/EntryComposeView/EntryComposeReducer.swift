@@ -68,7 +68,7 @@ let entryComposeReducer = Reducer<EntryComposeState, EntryComposeAction, EntryCo
             state.componentStates.move(fromOffsets: items, toOffset: position)
             return .none
         case .uploadPost:
-            guard let location = enviornment.secretsStore.contentLocation(for: state.blogConfig) else {
+            guard let location = enviornment.secretsStore.contentLocation(for: state.settingsState.blogConfig) else {
                 state.uploadMessage = "Not logged in"
                 state.uploadButtonEnabled = false
 
@@ -86,7 +86,7 @@ let entryComposeReducer = Reducer<EntryComposeState, EntryComposeAction, EntryCo
                 postfolder: state.date.iso8601withFractionalSeconds,
                 content: content)
 
-            let service = MyWeBlogService(baseURL: URL(string: state.blogConfig.urlString)!,
+            let service = MyWeBlogService(baseURL: URL(string: state.settingsState.blogConfig.urlString)!,
                                           client: enviornment.client)
             let upload: Future<Empty, Error> = service
                 .perform(endpoint: .createEntry(postContent))
@@ -115,12 +115,12 @@ let entryComposeReducer = Reducer<EntryComposeState, EntryComposeAction, EntryCo
         case .uploadImage(let position):
             let position = position
             var imageState = state.componentStates[position]
-            guard let location = enviornment.secretsStore.contentLocation(for: state.blogConfig),
+            guard let location = enviornment.secretsStore.contentLocation(for: state.settingsState.blogConfig),
                   case .uploadingImage(let data) = imageState.componentType else {
                 return .none
             }
 
-            let service = MyWeBlogService(baseURL: URL(string: state.blogConfig.urlString)!,
+            let service = MyWeBlogService(baseURL: URL(string: state.settingsState.blogConfig.urlString)!,
                                           client: enviornment.client)
             let upload: Future<ImageUploadContent, Error> = service
                 .perform(endpoint: .uploadImage(contentLocation: location,

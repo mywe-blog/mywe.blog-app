@@ -3,10 +3,8 @@ import ComposableArchitecture
 
 struct EntryComposeState: Equatable, Identifiable {
     var id: String {
-        return blogConfig.serviceIdentifier
+        return settingsState.blogConfig.serviceIdentifier
     }
-
-    var blogConfig: BlogConfiguration
 
     var title: String = ""
     var date = Date()
