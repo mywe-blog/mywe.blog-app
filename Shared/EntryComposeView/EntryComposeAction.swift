@@ -17,4 +17,6 @@ enum EntryComposeAction {
     case uploadedImage(Int, ImageUploadContent, Data)
     case uploadPost
     case uploadSuccess(Bool)
+
+    case deleteBlog
 }

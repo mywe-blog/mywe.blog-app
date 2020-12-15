@@ -12,8 +12,19 @@ let blogSelectorReducer = Reducer<BlogSelectorState, BlogSelectorAction, BlogSel
                                          }),
     Reducer { state, action, enviornment in
         switch action {
-        case .entryComposeAction(let action, _):
-            return .none
+        case .entryComposeAction(let index, let entryComposeAction):
+            switch entryComposeAction {
+            case .deleteBlog:
+                let config = state.allComposeComponentStates[index].settingsState.blogConfig
+
+                enviornment.secretsStore.setContentLocation(nil, for: config)
+                enviornment.configStore.delete(configuration: config)
+
+                state.allComposeComponentStates.remove(at: index)
+                return .none
+            default:
+                return .none
+            }
         case .showSettings(let blog):
             return .none
         case .setShowSettingsActive(let value):

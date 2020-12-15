@@ -156,6 +156,9 @@ let entryComposeReducer = Reducer<EntryComposeState, EntryComposeAction, EntryCo
                                                  uploadContent.filename)
             state.componentStates[position] = imageState
             return Effect(value: .upload)
+        case .deleteBlog:
+            // Handled by BlogSelector reducer
+            return .none
         }
     },
     settingsComponentReducer.pullback(state: \EntryComposeState.settingsState,

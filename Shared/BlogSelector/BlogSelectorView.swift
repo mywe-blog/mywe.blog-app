@@ -15,23 +15,25 @@ struct BlogSelectorView: View {
                                 action: BlogSelectorAction.entryComposeAction
                             ),
                             content: { store in
-                                NavigationLink(
-                                    destination: EntryComposeView(store: store)
-                                ) {
-                                    BlogSelectorItemView(store: store)
-                                }
-                                .contextMenu {
-                                    NavigationLink(destination: Text("Test")) {
-                                        Label("Settings", image: "gear")
+                                WithViewStore(store) { viewStore in
+                                    NavigationLink(
+                                        destination: EntryComposeView(store: store)
+                                    ) {
+                                        BlogSelectorItemView(store: store)
                                     }
-                                    Button {
-                                        // TODO: Add delete
-//                                        viewStore.send(.delete(viewStore.blogConfig))
-                                    } label: {
-                                        Label("Delete", image: "trash")
-                                            .foregroundColor(.red)
-                                    }
+                                    .contextMenu {
+                                        NavigationLink(destination: Text("Test")) {
+                                            Label("Settings", image: "gear")
+                                        }
+                                        Button {
+                                            // TODO: Add delete
+                                            viewStore.send(.deleteBlog)
+                                        } label: {
+                                            Label("Delete", image: "trash")
+                                                .foregroundColor(.red)
+                                        }
 
+                                    }
                                 }
                             }
                         )
