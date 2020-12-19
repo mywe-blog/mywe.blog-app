@@ -65,6 +65,7 @@ let settingsComponentReducer = Reducer<SettingsComponentState,
 
         var config = state.blogConfig
         config.urlString = state.enteredServerPath
+        config.serviceIdentifier = state.identifierName
         state.blogConfig = config
 
         env.configStore.store(configuration: config)
@@ -72,6 +73,10 @@ let settingsComponentReducer = Reducer<SettingsComponentState,
         
         return Effect(value: SettingsComponentAction.dismiss)
     case .dismiss:
+        return .none
+    case .setIdentifierName(let name):
+        state.identifierName = name
+
         return .none
     }
 }

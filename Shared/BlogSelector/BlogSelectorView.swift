@@ -22,17 +22,17 @@ struct BlogSelectorView: View {
                                         BlogSelectorItemView(store: store)
                                     }
                                     .contextMenu {
-                                        NavigationLink(destination: Text("Test")) {
+                                        Button {
+                                        } label: {
                                             Label("Settings", image: "gear")
+                                                .foregroundColor(.red)
                                         }
                                         Button {
-                                            // TODO: Add delete
                                             viewStore.send(.deleteBlog)
                                         } label: {
                                             Label("Delete", image: "trash")
                                                 .foregroundColor(.red)
                                         }
-
                                     }
                                 }
                             }

@@ -11,6 +11,14 @@ struct SettingsComponentView: View {
             NavigationView {
                 List {
                     Section {
+                        TextField(
+                            "https://myweblog-api.herokuapp.com",
+                            text: viewStore.binding(
+                                get: { $0.identifierName },
+                                send: SettingsComponentAction.setIdentifierName)
+                        )
+                    }
+                    Section {
                         Picker(
                             selection: viewStore.binding(get: { $0.locationIndex }, send: SettingsComponentAction.setLocation),
                             label: Text("Content Location")

@@ -11,6 +11,7 @@ struct SettingsComponentState: Equatable {
     var enteredServerPath: String
     var locationIndex = 0
     var localPath = ""
+    var identifierName: String
     var accessToken: String = ""
     var repoName: String = ""
     var showsEmptyRequiredFieldWarning = false

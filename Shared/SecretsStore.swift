@@ -51,6 +51,7 @@ struct SecretsStore {
                 blogConfig: config,
                 enteredServerPath: config.urlString,
                 locationIndex: SettingsComponentState.Location.allCases.firstIndex(of: .github) ?? 0,
+                identifierName: config.serviceIdentifier,
                 accessToken: token,
                 repoName: repo
             )
@@ -60,6 +61,7 @@ struct SecretsStore {
                 enteredServerPath: config.urlString,
                 locationIndex: SettingsComponentState.Location.allCases.firstIndex(of: .local) ?? 0,
                 localPath: path,
+                identifierName: config.serviceIdentifier,
                 accessToken: "",
                 repoName: ""
             )
@@ -67,6 +69,7 @@ struct SecretsStore {
             return SettingsComponentState(
                 blogConfig: config,
                 enteredServerPath: config.urlString,
+                identifierName: config.serviceIdentifier,
                 accessToken: "",
                 repoName: ""
             )
