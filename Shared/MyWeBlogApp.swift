@@ -10,15 +10,6 @@ struct MyWeBlogApp: App {
     }
 
     var entryComposeView: BlogSelectorView {
-//        let blog1 = BlogConfiguration(serviceIdentifier: "test-app",
-//                                      urlString: "https://myweblog-api.herokuapp.com")
-//
-//        let blog2 = BlogConfiguration(serviceIdentifier: "local",
-//                                      urlString: "http://0.0.0.0:3000")
-//
-//        BlogConfigurationStore().store(configuration: blog1)
-//        BlogConfigurationStore().store(configuration: blog2)
-
         let secretStore = SecretsStore()
         var state = BlogSelectorState()
         state.allComposeComponentStates = BlogConfigurationStore().allConfigurations.map {

@@ -15,7 +15,7 @@ struct BlogSelectorView: View {
                                 action: BlogSelectorAction.entryComposeAction
                             ),
                             content: { store in
-                                WithViewStore(store) { viewStore in
+                                WithViewStore(store) { composeViewStore in
                                     NavigationLink(
                                         destination: EntryComposeView(store: store)
                                     ) {
@@ -23,12 +23,13 @@ struct BlogSelectorView: View {
                                     }
                                     .contextMenu {
                                         Button {
+                                            viewStore.send(.showSettings(composeViewStore.settingsState))
                                         } label: {
                                             Label("Settings", image: "gear")
                                                 .foregroundColor(.red)
                                         }
                                         Button {
-                                            viewStore.send(.deleteBlog)
+                                            composeViewStore.send(.deleteBlog)
                                         } label: {
                                             Label("Delete", image: "trash")
                                                 .foregroundColor(.red)
@@ -40,7 +41,24 @@ struct BlogSelectorView: View {
                     }
                     .padding()
                 }
+                .navigationBarItems(trailing:
+                                        Button(
+                                            action: { viewStore.send(.addBlog) },
+                                            label: { Image(systemName: "plus") }
+                                        )
+                )
                 .navigationTitle("Blogs")
+                .popover(
+                    isPresented: viewStore.binding(get: { $0.showsSettings},
+                                                   send: BlogSelectorAction.setShowSettingsActive)) {
+                    IfLetStore(
+                        self.store.scope(
+                            state: \.selectedSettingsComponentsState,
+                            action: BlogSelectorAction.settingsAction
+                        ), then: { store in
+                            SettingsComponentView(store: store)
+                        })
+                }
             }
         }
     }
