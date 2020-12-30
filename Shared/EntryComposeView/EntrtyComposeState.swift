@@ -3,7 +3,7 @@ import ComposableArchitecture
 
 struct EntryComposeState: Equatable, Identifiable {
     var id: String {
-        return settingsState.blogConfig.serviceIdentifier
+        return settingsState.blogConfig.id.uuidString
     }
 
     var title: String = ""

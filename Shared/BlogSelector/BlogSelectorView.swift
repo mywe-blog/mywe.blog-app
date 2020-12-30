@@ -8,7 +8,7 @@ struct BlogSelectorView: View {
         WithViewStore(store) { viewStore in
             NavigationView {
                 ScrollView {
-                    LazyVGrid(columns: [.init(), .init()]) {
+                    LazyVGrid(columns: [.init()]) {
                         ForEachStore(
                             self.store.scope(
                                 state: \.allComposeComponentStates,
